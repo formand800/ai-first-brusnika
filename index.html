@@ -29,6 +29,9 @@
 </head>
 <body>
 
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-logo">
@@ -44,7 +47,28 @@
     <a href="#pilot">Пилот</a>
   </div>
   <a href="#cta" class="nav-cta">Обсудить</a>
+  <button class="nav-burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-head">
+    <div class="nav-logo"><span class="dot"></span><span>AI&nbsp;Брусника</span></div>
+    <button class="mm-close" id="mmClose" aria-label="Закрыть меню">&times;</button>
+  </div>
+  <nav class="mm-links">
+    <a href="#losses"><span class="mm-num">01</span><span>Потери</span></a>
+    <a href="#mixer"><span class="mm-num">02</span><span>A/B · сценарии</span></a>
+    <a href="#system"><span class="mm-num">03</span><span>Система</span></a>
+    <a href="#agents"><span class="mm-num">04</span><span>AI-агенты</span></a>
+    <a href="#day"><span class="mm-num">05</span><span>День КД</span></a>
+    <a href="#econ"><span class="mm-num">06</span><span>Экономика</span></a>
+    <a href="#pilot"><span class="mm-num">07</span><span>Пилот</span></a>
+    <a href="#cta"><span class="mm-num">08</span><span>Обсудить</span></a>
+  </nav>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -313,7 +337,7 @@
     </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap" id="agents">
     <div class="agents-block reveal">
       <div class="agents-head">
         <h4>27 AI-агентов · 6 доменов</h4>
@@ -328,6 +352,10 @@
         </div>
       </div>
       <div class="agents-grid" id="agentsGrid"></div>
+      <button class="agents-more" id="agentsMore" type="button" hidden>
+        <span class="lbl">Показать ещё</span>
+        <span class="cnt" id="agentsMoreCnt">17 агентов</span>
+      </button>
       <div style="margin-top:20px;font-size:12px;color:var(--text-3);line-height:1.5">
         В пилот включены 3 агента: <b style="color:#fff">AnomalyDetector · ERiRMarker · Campaigner</b>. Остальные подключаются после Gate&nbsp;3. Каждый агент — узко-специализированный пайплайн с входами, выходами и метрикой качества. Критические решения — human-in-the-loop.
       </div>
@@ -360,7 +388,7 @@
         <div class="time">07:30</div>
         <div class="title">Утренний дайджест</div>
         <div class="row"><div class="lbl">Сейчас</div><div class="tx">3–5 отчётов, 20–40 мин на чтение. Что требует решения — вычислять самому.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx">Одна сводка в Telegram, <b style="color:#fff">40 секунд</b>. Что исправлено ночью — явно.</div></div>
+        <div class="row after"><div class="lbl">С системой</div><div class="tx">Одна сводка в Telegram, <b style="color:#fff">40 секунд</b>. Что система отработала ночью и что требует решения утром&nbsp;— явно, без раскопок в отчётах.</div></div>
       </div>
       <div class="scene reveal reveal-d1">
         <div class="time">10:15</div>
@@ -576,6 +604,20 @@
         Поверните три рычага и посмотрите устойчивость модели. Базовый сценарий: CPL 15&nbsp;тыс ₽ × CR 2,0% × использование командой 65%. Во всех разумных комбинациях&nbsp;— NET положительный.
       </p>
 
+      <!-- Мобильный sticky-бейдж: виден при перемещении ползунков -->
+      <div class="calc-sticky" aria-hidden="true">
+        <div class="cs-top">
+          <div class="cs-lbl">NET · 3 года</div>
+          <div class="cs-val"><span>+</span><span id="netNumMob">672</span> <span class="u">млн&nbsp;₽</span></div>
+        </div>
+        <div class="cs-meta"><span id="detCplMob">CPL 15 × CR 2,0% × 65%</span></div>
+        <div class="cs-kpis">
+          <span><em>ROI</em><b id="detRoiMob">5,9×</b></span>
+          <span><em>MOIC</em><b id="detMoicMob">6,9×</b></span>
+          <span><em>Payback</em><b id="detBeMob">мес. 12–13</b></span>
+        </div>
+      </div>
+
       <div class="calc-grid">
         <div class="sliders">
           <div class="slider-block">
@@ -759,6 +801,63 @@
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
+    <div class="sources">
+      <div class="sources-head">Источники и бенчмарки</div>
+      <p class="sources-note">
+        Диапазоны CPL, конверсий и потерь в&nbsp;концепции рассчитаны по&nbsp;открытым отраслевым обзорам и&nbsp;публичным финотчётам. Прямые сноски с&nbsp;номерами таблиц&nbsp;— в&nbsp;полной версии документа.
+      </p>
+
+      <div class="sources-grid">
+        <div class="src-col">
+          <div class="src-title">Рынок недвижимости · CPL и&nbsp;воронка</div>
+          <ul class="src-list">
+            <li><a href="https://sostav.ru/" target="_blank" rel="noopener">Состав.РФ</a> — динамика цены первичного лида в&nbsp;недвижимости 2022–2024</li>
+            <li><a href="https://www.calltouch.ru/" target="_blank" rel="noopener">Calltouch</a> — рыночные CPL в&nbsp;Яндекс.Директе по&nbsp;Москве (комфорт ~20&nbsp;тыс, бизнес ~30&nbsp;тыс&nbsp;₽)</li>
+            <li><a href="https://novostroi.ru/" target="_blank" rel="noopener">NovostroikiNo</a> — стоимость квалифицированного лида в&nbsp;новостройках (7,9–53&nbsp;тыс&nbsp;₽ в&nbsp;зависимости от&nbsp;класса и&nbsp;региона), 2025–2026</li>
+            <li><a href="https://digitaldeveloper.ru/" target="_blank" rel="noopener">DigitalDeveloper</a> — конверсия «уникальный&nbsp;→ целевой лид» в&nbsp;новостройках: 25–30%</li>
+            <li><a href="https://artsofte.ru/" target="_blank" rel="noopener">Artsofte</a> — конверсия «валидированный лид&nbsp;→ сделка» у&nbsp;застройщиков (средняя 1,74%)</li>
+          </ul>
+        </div>
+
+        <div class="src-col">
+          <div class="src-title">Отраслевой контекст и&nbsp;макро</div>
+          <ul class="src-list">
+            <li><a href="https://дом.рф/" target="_blank" rel="noopener">ДОМ.РФ</a> — состояние жилищного рынка РФ, ипотечная и&nbsp;кредитная статистика</li>
+            <li><a href="https://frankrg.com/" target="_blank" rel="noopener">Frank&nbsp;RG</a> — банковская и&nbsp;ипотечная аналитика</li>
+            <li><a href="https://rosstat.gov.ru/" target="_blank" rel="noopener">Росстат</a> — ввод жилья, демография, доходы</li>
+            <li><a href="https://www.cbr.ru/" target="_blank" rel="noopener">Банк России</a> — ключевая ставка, ипотечные условия</li>
+            <li><a href="https://www.tbank.ru/invest/" target="_blank" rel="noopener">Т‑Банк Инвестиции</a>, <a href="https://bruskaya.ru/" target="_blank" rel="noopener">Брусника</a> — публичные финотчёты, выручка 2025 ≈ 115,6&nbsp;млрд&nbsp;₽, валовая рент. 42%, EBITDA-маржа 38%</li>
+          </ul>
+        </div>
+
+        <div class="src-col">
+          <div class="src-title">AI, автоматизация, AdTech</div>
+          <ul class="src-list">
+            <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey · «The State of AI»</a> — внедрение GenAI в&nbsp;маркетинге, производительность</li>
+            <li><a href="https://www.bcg.com/capabilities/artificial-intelligence" target="_blank" rel="noopener">BCG</a> — эффекты GenAI в&nbsp;B2C-маркетинге и&nbsp;контент-производстве</li>
+            <li><a href="https://www.gartner.com/en/marketing" target="_blank" rel="noopener">Gartner Marketing</a> — AdTech‑стек, бенчмарки автоматизации</li>
+            <li><a href="https://www.deloitte.com/global/en/services/consulting/research.html" target="_blank" rel="noopener">Deloitte Insights</a> — real-estate &amp;&nbsp;digital-трансформация</li>
+            <li><a href="https://www.iab.com/insights/" target="_blank" rel="noopener">IAB</a>, <a href="https://ppc.world/" target="_blank" rel="noopener">PPC&nbsp;World</a>, <a href="https://vc.ru/" target="_blank" rel="noopener">VC.ru</a> — performance- и&nbsp;медиа-бенчмарки</li>
+          </ul>
+        </div>
+
+        <div class="src-col">
+          <div class="src-title">Медиа-каналы (источники CPL‑бенчмарков)</div>
+          <ul class="src-list">
+            <li><a href="https://direct.yandex.ru/" target="_blank" rel="noopener">Яндекс.Директ</a> · <a href="https://yandex.ru/adv/products/display/programmatic" target="_blank" rel="noopener">Яндекс.Метрика / YAN</a></li>
+            <li><a href="https://ads.vk.com/" target="_blank" rel="noopener">VK&nbsp;Реклама</a></li>
+            <li><a href="https://www.avito.ru/" target="_blank" rel="noopener">Avito Недвижимость</a></li>
+            <li><a href="https://www.cian.ru/" target="_blank" rel="noopener">Циан</a></li>
+            <li><a href="https://mail.ru/advertising/" target="_blank" rel="noopener">Mail&nbsp;Ru&nbsp;Рекламная Система</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="sources-disc">
+        Внутренние расчёты по&nbsp;Брусника-воронке основаны на&nbsp;публично доступной отчётности и&nbsp;типовых отраслевых бенчмарках; конкретные значения CPL/CR Брусники в&nbsp;концепции используются как допущения и&nbsp;подлежат уточнению из&nbsp;CRM&nbsp;и&nbsp;медийных кабинетов на&nbsp;этапе Discovery. Диапазоны&nbsp;— консервативные.
+      </p>
+    </div>
+
     <div class="foot">
       <div>© 2026 · AI&nbsp;Брусника · Конфиденциальный материал для Коммерческого блока Брусники</div>
       <div>Апрель 2026 · <a href="#hero">К началу ↑</a></div>

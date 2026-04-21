@@ -334,7 +334,10 @@ section{position:relative}
    CHAPTER
    ==================================================================== */
 .chapter{
-  padding:clamp(90px,12vw,160px) 0 clamp(30px,5vw,60px);
+  /* ВАЖНО: НЕ использовать shorthand — он обнуляет padding-left/right от .wrap
+     и текст прилипал к левому краю на мобилке */
+  padding-top:clamp(90px,12vw,160px);
+  padding-bottom:clamp(30px,5vw,60px);
   text-align:left;
 }
 .chapter .num-tag{
@@ -353,7 +356,9 @@ section{position:relative}
   position:relative;
   min-height:100vh;min-height:100dvh;
   display:flex;align-items:center;
-  padding:80px 0;
+  /* ВАЖНО: longhand, иначе shorthand «padding:80px 0» обнуляет
+     горизонтальный padding от .wrap и текст прилипает к левому краю */
+  padding-top:80px;padding-bottom:80px;
 }
 .losses-grid{
   display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,5vw,80px);
@@ -422,7 +427,7 @@ section{position:relative}
 }
 @media(max-width:900px){
   .losses-grid{grid-template-columns:1fr;gap:40px}
-  .losses-pin{min-height:auto;padding:60px 0}
+  .losses-pin{min-height:auto;padding-top:60px;padding-bottom:60px}
   .loss-row{grid-template-columns:1.5fr 2fr 1fr}
 }
 @media(max-width:560px){
@@ -605,18 +610,9 @@ section{position:relative}
 .sys-track::-webkit-scrollbar{height:4px}
 .sys-track::-webkit-scrollbar-track{background:transparent}
 .sys-track::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:999px}
-/* Affordance: показать подсказку о горизонтальном скролле */
-.sys-wrap::after{
-  content:'← свайп →';
-  display:block;
-  text-align:center;
-  padding-top:14px;
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  color:var(--text-4);
-}
+/* Убрали псевдо-подсказку «свайп →» под sys-track — она появлялась
+   под блоком AI-агентов, а сам список уже имеет scroll-snap, так что
+   визуальная подсказка избыточна. */
 .sys-card{
   flex:0 0 clamp(300px,32vw,440px);
   padding:28px;
@@ -682,7 +678,13 @@ section{position:relative}
   gap:20px;flex-wrap:wrap;margin-bottom:24px;
 }
 .agents-head h4{font-size:20px;font-weight:600;letter-spacing:-0.015em}
-.agents-tabs{display:flex;gap:4px;flex-wrap:wrap;background:rgba(0,0,0,.4);padding:4px;border-radius:12px;border:1px solid var(--line)}
+.agents-tabs{
+  display:flex;gap:4px;flex-wrap:wrap;
+  background:rgba(255,255,255,.035);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  padding:4px;border-radius:12px;border:1px solid var(--line);
+}
 .agents-tab{
   padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;
   color:var(--text-3);transition:all .2s var(--ease);
@@ -1236,12 +1238,52 @@ section{position:relative}
    FOOTER
    ==================================================================== */
 footer{
-  padding:40px 0;border-top:1px solid var(--line);
+  padding:56px 0 40px;border-top:1px solid var(--line);
   font-size:13px;color:var(--text-3);
 }
-footer .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .foot{
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin-top:36px;padding-top:24px;border-top:1px solid var(--line);
+}
 footer a{color:var(--text-2)}
 footer a:hover{color:#fff}
+
+/* Sources block */
+.sources{font-size:12.5px;line-height:1.55}
+.sources-head{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:10px;
+}
+.sources-note{
+  color:var(--text-2);max-width:780px;margin:0 0 26px;
+  font-size:13px;line-height:1.6;
+}
+.sources-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:28px 32px;margin-bottom:24px;
+}
+.src-col{min-width:0}
+.src-title{
+  font-size:12px;font-weight:600;color:#fff;
+  margin-bottom:10px;letter-spacing:0.01em;
+}
+.src-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.src-list li{color:var(--text-3);font-size:12px;line-height:1.5}
+.src-list a{color:var(--text-2);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.18)}
+.src-list a:hover{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.sources-disc{
+  color:var(--text-3);font-size:11.5px;line-height:1.6;
+  max-width:920px;margin:0;padding-top:18px;border-top:1px solid var(--line);
+  font-style:italic;
+}
+
+@media (max-width:980px){
+  .sources-grid{grid-template-columns:repeat(2,1fr);gap:24px 24px}
+}
+@media (max-width:560px){
+  .sources-grid{grid-template-columns:1fr;gap:22px}
+  .sources-head{font-size:10.5px}
+}
 
 /* ====================================================================
    REVEAL — JS adds .in class via IntersectionObserver
@@ -1313,10 +1355,11 @@ footer{padding-bottom:max(40px,calc(env(safe-area-inset-bottom,0px) + 20px))}
    HERO MOBILE
    ==================================================================== */
 @media(max-width:480px){
-  /* Reduce excessive top padding on very small screens */
+  /* Reduce excessive top padding on very small screens.
+     Bottom padding оставляем широким — нужен воздух для иконки Scroll (item 10). */
   .hero{
     padding-top:clamp(80px,13vh,130px);
-    padding-bottom:clamp(48px,8vh,80px);
+    padding-bottom:clamp(96px,13vh,130px);
   }
   /* Eyebrow badge: compact for small screens */
   .hero-eyebrow{
@@ -1753,8 +1796,534 @@ footer{padding-bottom:max(40px,calc(env(safe-area-inset-bottom,0px) + 20px))}
   .btn-primary:hover,
   .btn-secondary:hover,
   .cta-mega:hover,
-  .nav-cta:hover{
+  .nav-cta:hover,
+  .agents-more:hover{
     transform:none!important;
     box-shadow:none;
   }
+}
+
+/* ====================================================================
+   SCROLL PROGRESS BAR — индикатор прочитанного сверху экрана
+   ==================================================================== */
+.scroll-progress{
+  position:fixed;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--orange-2),var(--purple-2),var(--green-2));
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  z-index:101;
+  pointer-events:none;
+  transition:transform .05s linear;
+  will-change:transform;
+}
+@supports(top:env(safe-area-inset-top)){
+  .scroll-progress{top:env(safe-area-inset-top,0px)}
+}
+
+/* ====================================================================
+   HAMBURGER-BUTTON + MOBILE MENU
+   На десктопе (>860px) — скрыт бургер, показан nav-links + nav-cta.
+   На мобилке — nav-links/nav-cta скрыты, виден только бургер.
+   ==================================================================== */
+.nav-burger{
+  display:none;
+  width:38px;height:38px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:4px;
+  cursor:pointer;padding:0;
+  transition:background .2s var(--ease),border-color .2s var(--ease);
+}
+.nav-burger span{
+  display:block;width:16px;height:1.5px;
+  background:#fff;border-radius:1px;
+  transition:transform .25s var(--ease-apple),opacity .2s var(--ease);
+}
+
+@media(max-width:860px){
+  .nav-burger{display:flex}
+  .nav-cta{display:none}
+}
+
+/* Full-screen mobile menu overlay */
+.mobile-menu{
+  position:fixed;inset:0;
+  background:rgba(8,8,12,.96);
+  backdrop-filter:saturate(140%) blur(20px);
+  -webkit-backdrop-filter:saturate(140%) blur(20px);
+  z-index:200;
+  display:flex;flex-direction:column;
+  padding:max(18px,env(safe-area-inset-top,0px)) 20px max(20px,env(safe-area-inset-bottom,0px));
+  opacity:0;pointer-events:none;
+  transform:translateY(-10px);
+  transition:opacity .25s var(--ease),transform .28s var(--ease-apple);
+  visibility:hidden;
+}
+.mobile-menu.open{
+  opacity:1;pointer-events:auto;visibility:visible;transform:none;
+}
+.mm-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:4px 2px 24px;border-bottom:1px solid var(--line);
+}
+.mm-close{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  font-size:26px;line-height:1;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;padding:0;
+}
+.mm-links{
+  display:flex;flex-direction:column;
+  padding:14px 2px;margin-top:6px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.mm-links a{
+  display:flex;align-items:center;gap:16px;
+  padding:16px 8px;
+  font-size:18px;font-weight:500;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  letter-spacing:-0.01em;
+}
+.mm-links a:last-child{
+  margin-top:14px;border-bottom:none;
+  background:#fff;color:#000;border-radius:14px;
+  padding:18px 20px;justify-content:center;font-weight:600;
+}
+.mm-links a:last-child .mm-num{color:rgba(0,0,0,.4)}
+.mm-num{
+  font-family:var(--mono);font-size:11px;color:var(--text-4);
+  letter-spacing:0.12em;min-width:24px;
+}
+/* Блокируем прокрутку body когда меню открыто */
+body.menu-open{overflow:hidden;touch-action:none}
+
+/* Бургер открыт — крестик (упрощённая анимация) */
+.nav-burger[aria-expanded="true"]{background:rgba(255,255,255,.1)}
+.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+/* ====================================================================
+   AGENTS — sticky фильтр + кнопка «Показать ещё»
+   ==================================================================== */
+.agents-more{
+  width:100%;margin-top:20px;
+  padding:16px 20px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:var(--text-2);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font-size:14px;font-weight:500;
+  cursor:pointer;
+  transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease);
+}
+.agents-more:hover{background:rgba(255,255,255,.06);color:#fff;border-color:var(--line-2)}
+.agents-more .cnt{
+  font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:0.04em;
+}
+.agents-more::after{
+  content:'↓';font-family:var(--mono);font-size:14px;color:var(--text-3);
+  transition:transform .25s var(--ease-apple);
+}
+.agents-more.expanded::after{transform:rotate(180deg)}
+
+/* При скролле внутри секции агентов tabs «прилипают» сверху,
+   чтобы не приходилось возвращаться наверх для смены фильтра */
+@media(max-width:900px){
+  .agents-head{
+    position:sticky;top:64px;z-index:5;
+    margin:-8px -8px 20px;
+    padding:12px 8px;
+    background:rgba(12,12,16,.92);
+    backdrop-filter:saturate(140%) blur(12px);
+    -webkit-backdrop-filter:saturate(140%) blur(12px);
+    border-radius:12px;
+    border-bottom:1px solid var(--line);
+    transition:top .26s cubic-bezier(.2,.7,.2,1);
+  }
+  /* Когда nav скрыт (body.nav-hidden-active) — sticky-элементы
+     подтягиваются к верху экрана, чтобы вернуть контент место, освобождённое
+     уехавшим nav. Без этого над .agents-head остаётся пустая полоса 64px. */
+  body.nav-hidden-active .agents-head{top:8px}
+  /* Заголовок "27 AI-агентов · 6 доменов" можно скрыть в sticky-режиме
+     чтобы освободить место, но оставим компактным */
+  .agents-head h4{font-size:15px}
+}
+
+/* ====================================================================
+   CALC — мобильный sticky-бейдж NET (виден при перемещении ползунков)
+   На десктопе скрыт — виден большой .calc-result справа.
+   ==================================================================== */
+.calc-sticky{display:none}
+@media(max-width:860px){
+  .calc-sticky{
+    display:block;
+    position:sticky;
+    top:60px;
+    z-index:4;
+    margin:0 0 18px;
+    padding:12px 16px;
+    background:linear-gradient(135deg,rgba(48,209,88,.14),rgba(191,90,242,.08));
+    border:1px solid rgba(48,209,88,.3);
+    border-radius:14px;
+    backdrop-filter:saturate(140%) blur(10px);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+    box-shadow:0 8px 28px rgba(0,0,0,.35);
+    transition:top .26s cubic-bezier(.2,.7,.2,1);
+  }
+  /* Когда nav скрыт — подтягиваем sticky-бейдж к верху */
+  body.nav-hidden-active .calc-sticky{top:8px}
+  .calc-sticky .cs-top{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .calc-sticky .cs-lbl{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--text-3);
+    flex-shrink:0;max-width:85px;line-height:1.35;
+  }
+  .calc-sticky .cs-val{
+    font-family:var(--mono);font-variant-numeric:tabular-nums;
+    font-size:26px;font-weight:700;color:var(--green-2);
+    letter-spacing:-0.025em;line-height:1;white-space:nowrap;
+    display:flex;align-items:baseline;gap:2px;
+  }
+  .calc-sticky .cs-val .u{font-size:11px;color:var(--text-3);font-weight:600;margin-left:4px;letter-spacing:0}
+  .calc-sticky .cs-meta{
+    font-family:var(--mono);font-size:10px;color:var(--text-3);
+    line-height:1.4;padding-top:6px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .calc-sticky .cs-kpis{
+    display:flex;gap:12px;justify-content:space-between;align-items:center;
+    padding-top:10px;margin-top:10px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-family:var(--mono);
+  }
+  .calc-sticky .cs-kpis span{
+    display:flex;flex-direction:column;gap:2px;min-width:0;
+  }
+  .calc-sticky .cs-kpis em{
+    font-style:normal;font-size:9px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--text-4);line-height:1;
+  }
+  .calc-sticky .cs-kpis b{
+    font-size:12.5px;color:#fff;font-weight:700;
+    font-variant-numeric:tabular-nums;line-height:1.1;
+    white-space:nowrap;
+  }
+  /* На мобилке большой .calc-result скрываем — его роль выполняет
+     sticky-бейдж сверху (item 6: дубль калькулятора) */
+  .calc-result{display:none}
+}
+
+/* ====================================================================
+   GANTT — sticky названия строк при горизонтальном скролле.
+   До этого при скролле вправо названия этапов уезжали вместе с диаграммой
+   и было непонятно, какой срок к какому этапу относится.
+   ==================================================================== */
+.gantt-row .name,
+.gantt-scale-name{
+  position:sticky;left:0;
+  z-index:3;
+  /* Сплошной фон + тень справа вместо прозрачного градиента —
+     иначе при горизонтальном скролле цветная полоса Ганта
+     просвечивала через fade-to-transparent зону (item 8 bug) */
+  background:#0e0e12;
+  box-shadow:8px 0 12px -6px rgba(0,0,0,.85);
+  padding-right:14px;
+}
+.gantt-scale-name{
+  background:#0e0e12;
+}
+
+/* ====================================================================
+   P&L TABLE — sticky первая колонка + fade-подсказка «можно скроллить»
+   Пользователь жаловался, что на мобилке цифры переносятся и блок
+   выглядит как баг таблицы — не ясно, что нужно скроллить в сторону.
+   ==================================================================== */
+@media(max-width:680px){
+  .pnl{position:relative}
+  .pnl-table{min-width:540px}
+  .pnl-table th:first-child,
+  .pnl-table td:first-child{
+    position:sticky;left:0;z-index:2;
+    background:rgba(14,14,18,0.98);
+    box-shadow:6px 0 10px -6px rgba(0,0,0,.6);
+    max-width:200px;white-space:normal;
+  }
+  .pnl-table tr.hl td:first-child{background:rgba(30,18,40,0.98)}
+  /* Fade-подсказка справа — «есть, куда скроллить» */
+  .pnl::after{
+    content:'← свайп по таблице →';
+    display:block;
+    text-align:center;
+    padding-top:12px;margin-top:8px;
+    border-top:1px dashed var(--line);
+    font-family:var(--mono);font-size:10px;
+    letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--text-4);
+  }
+}
+
+/* ====================================================================
+   «СВАЙП →» — оставляем только на gantt (где реальный overflow с длинным
+   таймлайном). sys-wrap::after удалён — подсказка дублировала горизонтальный
+   скролл, который и без того очевиден на тач-устройстве.
+   ==================================================================== */
+@media(min-width:861px){
+  .gantt::after{display:none}
+}
+
+/* ====================================================================
+   HERO MOBILE — больше воздуха, меньше визуального шума.
+   Пользователь отметил перегруз стартового экрана.
+   ==================================================================== */
+@media(max-width:860px){
+  /* Воздух между hero-micro и scroll-hint (item 10):
+     scroll-hint абсолютно спозиционирован у нижнего края hero,
+     поэтому эффективный зазор создаётся через padding-bottom самой секции */
+  .hero{padding-bottom:clamp(110px,15vh,150px)}
+  .hero-inner{display:flex;flex-direction:column;gap:22px}
+  .hero-title{letter-spacing:-0.035em;margin:0}
+  .hero-lead{max-width:100%;font-size:15px;line-height:1.55;margin-top:6px}
+  .hero-lead-2{font-size:14px;line-height:1.6;color:var(--text-3);margin-top:4px}
+  .hero-score{
+    padding:20px 18px;margin-top:10px;gap:14px;
+    grid-template-columns:1fr;
+  }
+  .hero-score .divider{display:none}
+  .hero-score .cell{padding:4px 0}
+  .hero-score .cell + .cell{padding-top:18px;border-top:1px solid var(--line)}
+  .hero-score .val{font-size:clamp(30px,9vw,44px)}
+  .hero-score .lbl{font-size:10.5px}
+  .hero-score .sub{font-size:12px}
+  .hero-micro{
+    gap:8px 16px;font-size:11.5px;
+    padding-top:12px;
+    /* Воздух между плашками и иконкой Scroll снизу (item 10) */
+    margin-bottom:clamp(48px,9vh,88px);
+  }
+  .hero-micro span{
+    padding:4px 10px;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--line);
+    border-radius:999px;
+  }
+  /* Scroll-hint поднимаем чуть выше от края — чтобы не прилипал к нижнему safe-area */
+  .scroll-hint{bottom:clamp(20px,4vh,36px)}
+}
+
+/* ====================================================================
+   ОТСТУПЫ ОТ КРАЯ — глобальная «воздушная подушка».
+   Пользователь жаловался, что блоки прилипают к левому краю.
+   Усиливаем минимальный padding .wrap на узких экранах.
+   ==================================================================== */
+@media(max-width:560px){
+  :root{--pad:22px}
+  /* Главы/заголовки, которые рендерятся через .chapter.wrap
+     и без того стоят на .wrap — но добавим воздуха сверху/снизу */
+  .chapter{padding-top:64px;padding-bottom:12px}
+  /* Эти блоки раньше иногда выглядели «в край» */
+  .pilot-kpis,
+  .gates,
+  .wait-steps,
+  .day-scenes,
+  .mixer-scoreboard,
+  .agents-block,
+  .sources-grid{margin-left:0;margin-right:0}
+}
+@media(max-width:380px){
+  :root{--pad:18px}
+}
+
+/* ====================================================================
+   NAV — на мобиле компактнее, логотип читаемый всегда
+   (раньше текст логотипа скрывался при < 860px)
+   ==================================================================== */
+@media(max-width:860px){
+  .nav-logo span:last-child{display:inline}
+  .nav-logo{font-size:13px}
+}
+@media(max-width:380px){
+  .nav-logo span:last-child{display:none}
+}
+
+/* ====================================================================
+   NAV AUTO-HIDE — при скролле вниз .nav уходит вверх, при скролле
+   вверх — возвращается. Класс навешивается из main.js.
+   ==================================================================== */
+.nav{
+  transition:transform .28s var(--ease-apple),opacity .25s var(--ease);
+  will-change:transform;
+}
+.nav.nav-hidden{
+  transform:translate(-50%,-140%);
+  opacity:0;
+  pointer-events:none;
+}
+
+/* ====================================================================
+   MOBILE MENU — премиум-оформление пунктов (item 3)
+   Было: тонкие белые строки, равномерное распределение.
+   Стало: тёплый акцент номеров, chevron справа, воздух между строками,
+   мягкий разделитель gradient-to-transparent.
+   ==================================================================== */
+.mm-links{gap:2px}
+.mm-links a{
+  position:relative;
+  padding:18px 16px;
+  font-size:19px;font-weight:500;
+  letter-spacing:-0.015em;
+  color:#fff;
+  border:none;
+  border-radius:14px;
+  transition:background .22s var(--ease),transform .22s var(--ease-apple);
+}
+/* Тонкий разделитель градиентом, не прямой линией */
+.mm-links a:not(:last-child)::after{
+  content:'';position:absolute;left:16px;right:16px;bottom:0;height:1px;
+  background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.02) 70%,transparent);
+}
+.mm-links a:hover,
+.mm-links a:active{
+  background:rgba(255,255,255,.04);
+}
+/* Chevron справа */
+.mm-links a:not(:last-child)::before{
+  content:'→';
+  position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:15px;font-weight:400;
+  color:var(--text-4);
+  transition:transform .25s var(--ease-apple),color .2s var(--ease);
+}
+.mm-links a:hover::before{color:var(--text-2);transform:translateY(-50%) translateX(3px)}
+
+/* Номера — акцентом брендового градиента */
+.mm-num{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:0.12em;min-width:28px;
+  background:var(--grad-brand);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  opacity:.85;
+}
+
+/* Последний пункт (CTA «Обсудить») — как primary-кнопка */
+.mm-links a:last-child{
+  margin-top:18px;border-bottom:none;
+  background:#fff;color:#000;border-radius:14px;
+  padding:18px 20px;justify-content:center;font-weight:600;
+  font-size:17px;letter-spacing:-0.01em;
+}
+.mm-links a:last-child::before{display:none}
+.mm-links a:last-child .mm-num{
+  background:none;-webkit-text-fill-color:rgba(0,0,0,.35);
+  color:rgba(0,0,0,.35);
+}
+
+/* ====================================================================
+   AGENTS-TABS — в sticky-режиме (мобилка) фильтр полупрозрачный (item 4)
+   ==================================================================== */
+@media(max-width:900px){
+  .agents-head .agents-tabs{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:saturate(160%) blur(14px);
+    -webkit-backdrop-filter:saturate(160%) blur(14px);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .agents-tab{color:var(--text-2)}
+  .agents-tab:hover{background:rgba(255,255,255,.06);color:#fff}
+  .agents-tab.active{background:rgba(255,255,255,.9);color:#0a0a0e}
+}
+
+/* ====================================================================
+   SOURCES — переработка читабельности (item 9)
+   Было: 4 узкие колонки с разнородной типографикой, списки «в кашу».
+   Стало: структурированные блоки с разделителями, больше air, контраст.
+   ==================================================================== */
+.sources{
+  padding:clamp(24px,3vw,40px);
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--line);
+  border-radius:18px;
+  margin-bottom:24px;
+}
+.sources-head{
+  font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:14px;font-weight:600;
+}
+.sources-note{
+  color:var(--text-2);max-width:780px;margin:0 0 28px;
+  font-size:14px;line-height:1.6;
+  padding-bottom:24px;border-bottom:1px solid var(--line);
+}
+.sources-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:28px 36px;margin-bottom:24px;
+}
+.src-col{
+  min-width:0;
+  padding-left:16px;
+  border-left:2px solid rgba(255,255,255,.08);
+}
+.src-title{
+  font-size:12.5px;font-weight:600;color:#fff;
+  margin-bottom:14px;letter-spacing:-0.005em;
+  line-height:1.3;
+  padding-bottom:10px;
+  border-bottom:1px dashed rgba(255,255,255,.08);
+}
+.src-list{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:10px;
+}
+.src-list li{
+  color:var(--text-3);font-size:12.5px;line-height:1.55;
+  padding-left:14px;position:relative;
+}
+.src-list li::before{
+  content:'';position:absolute;left:0;top:9px;
+  width:6px;height:1px;background:var(--text-4);
+}
+.src-list a{
+  color:#fff;font-weight:500;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.18);
+  transition:border-color .2s var(--ease),color .2s var(--ease);
+}
+.src-list a:hover{border-bottom-color:rgba(255,255,255,.6)}
+.sources-disc{
+  color:var(--text-3);font-size:12px;line-height:1.65;
+  max-width:none;margin:0;padding-top:20px;
+  border-top:1px solid var(--line);
+  font-style:italic;
+}
+@media(max-width:980px){
+  .sources-grid{grid-template-columns:repeat(2,1fr);gap:26px 28px}
+}
+@media(max-width:560px){
+  .sources{padding:22px 18px}
+  .sources-grid{grid-template-columns:1fr;gap:22px}
+  .src-col{padding-left:14px}
+  .sources-head{font-size:10.5px}
+  .src-title{font-size:13px}
+  .src-list li{font-size:13px}
+}
+
+/* ====================================================================
+   REDUCE MOTION — респект prefers-reduced-motion
+   ==================================================================== */
+@media(prefers-reduced-motion:reduce){
+  .nav,
+  .nav.nav-hidden,
+  .scroll-progress,
+  .mobile-menu,
+  .nav-burger span,
+  .agents-more::after,
+  .mm-links a::before{transition:none}
+  .nav.nav-hidden{transform:translateX(-50%)}
 }

@@ -33,11 +33,118 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
+        // Закрываем мобильное меню перед прокруткой (если открыто)
+        if (document.body.classList.contains('menu-open')) {
+          closeMobileMenu();
+        }
         const top = target.getBoundingClientRect().top + window.pageYOffset - 40;
         window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
       }
     }
   });
+});
+
+/* =========================================================================
+   SCROLL PROGRESS BAR + AUTO-HIDE NAV
+   При скролле вниз nav скрывается, при скролле вверх — возвращается.
+   Логика: ТОЛЬКО на touch-устройствах (hover:none / pointer:coarse),
+   после 100 px прокрутки сверху. На десктопе auto-hide не работает —
+   нет проблемы места под fat-finger'ы и nav полезен как якорь навигации.
+   ========================================================================= */
+const scrollProgress = document.getElementById('scrollProgress');
+const navEl = document.getElementById('nav');
+let spTicking = false;
+let lastScrollY = window.pageYOffset;
+let navHiddenState = false;
+const NAV_HIDE_THRESHOLD = 100;   // не прячем до 100 px сверху
+const NAV_DELTA = 6;              // реагируем на изменения >6 px (анти-дребезг)
+
+// touch-гейт: live-detect, чтобы реагировать на смену режима (например, при
+// подключении мыши на планшете)
+const touchMQ = window.matchMedia('(hover: none), (pointer: coarse)');
+function isTouchDevice() { return touchMQ.matches; }
+
+// Если режим переключился и это уже не touch — вернуть nav назад.
+touchMQ.addEventListener?.('change', () => {
+  if (!isTouchDevice() && navHiddenState) {
+    navEl?.classList.remove('nav-hidden');
+    document.body.classList.remove('nav-hidden-active');
+    navHiddenState = false;
+  }
+});
+
+function updateScrollProgress() {
+  const y = window.pageYOffset;
+  if (scrollProgress) {
+    const doc = document.documentElement;
+    const total = (doc.scrollHeight - doc.clientHeight) || 1;
+    const p = Math.min(1, Math.max(0, y / total));
+    scrollProgress.style.transform = `scaleX(${p})`;
+  }
+
+  // Auto-hide nav (только на тач-устройствах и когда мобильное меню закрыто)
+  if (navEl && isTouchDevice() && !document.body.classList.contains('menu-open')) {
+    const dy = y - lastScrollY;
+    if (Math.abs(dy) > NAV_DELTA) {
+      if (dy > 0 && y > NAV_HIDE_THRESHOLD) {
+        // скролл вниз — скрыть
+        if (!navHiddenState) {
+          navEl.classList.add('nav-hidden');
+          document.body.classList.add('nav-hidden-active');
+          navHiddenState = true;
+        }
+      } else {
+        // скролл вверх — показать
+        if (navHiddenState) {
+          navEl.classList.remove('nav-hidden');
+          document.body.classList.remove('nav-hidden-active');
+          navHiddenState = false;
+        }
+      }
+      lastScrollY = y;
+    }
+  } else {
+    lastScrollY = y;
+  }
+
+  spTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!spTicking) {
+    requestAnimationFrame(updateScrollProgress);
+    spTicking = true;
+  }
+}, { passive: true });
+updateScrollProgress();
+
+/* =========================================================================
+   MOBILE MENU (hamburger)
+   ========================================================================= */
+const burger = document.getElementById('navBurger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mmClose = document.getElementById('mmClose');
+
+function openMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  burger?.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('menu-open');
+}
+function closeMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  burger?.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+}
+burger?.addEventListener('click', () => {
+  mobileMenu?.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+});
+mmClose?.addEventListener('click', closeMobileMenu);
+// Esc закрывает меню
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMobileMenu();
 });
 
 /* =========================================================================
@@ -305,25 +412,76 @@ const AGENTS = [
 ];
 const DOMAIN_NAMES = {data:'Данные', media:'Медиа', content:'Контент', crm:'CRM', sec:'ИБ', cd:'КД'};
 const agentsGrid = document.getElementById('agentsGrid');
+const agentsMoreBtn = document.getElementById('agentsMore');
+const agentsMoreCnt = document.getElementById('agentsMoreCnt');
 
-function renderAgents(filter = 'all') {
+// Количество агентов на первый показ (сокращаем визуальный шум)
+const AGENTS_INITIAL = 10;
+let currentFilter = 'all';
+let agentsExpanded = false;
+
+function renderAgents() {
   if (!agentsGrid) return;
-  const list = filter === 'all' ? AGENTS : AGENTS.filter(a => a.dom === filter);
+  const full = currentFilter === 'all' ? AGENTS : AGENTS.filter(a => a.dom === currentFilter);
+  const list = agentsExpanded ? full : full.slice(0, AGENTS_INITIAL);
   agentsGrid.innerHTML = list.map(a => `
     <div class="agent">
       <div class="top"><div class="n">${a.n}</div><div class="dom">${DOMAIN_NAMES[a.dom]}</div></div>
       <div class="d">${a.d}</div>
       <div class="kpi">${a.kpi}</div>
     </div>`).join('');
+
+  // Управление кнопкой «Показать ещё / Свернуть»
+  if (agentsMoreBtn) {
+    const hidden = full.length - list.length;
+    if (full.length <= AGENTS_INITIAL) {
+      // Всё и так помещается — кнопка не нужна
+      agentsMoreBtn.hidden = true;
+      agentsMoreBtn.classList.remove('expanded');
+    } else {
+      agentsMoreBtn.hidden = false;
+      agentsMoreBtn.classList.toggle('expanded', agentsExpanded);
+      const lbl = agentsMoreBtn.querySelector('.lbl');
+      if (lbl) lbl.textContent = agentsExpanded ? 'Свернуть список' : 'Показать ещё';
+      if (agentsMoreCnt) {
+        const word = pluralAgents(hidden);
+        agentsMoreCnt.textContent = agentsExpanded ? '' : `${hidden} ${word}`;
+        agentsMoreCnt.hidden = agentsExpanded;
+      }
+    }
+  }
 }
+
+function pluralAgents(n) {
+  const mod10 = n % 10, mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'агент';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'агента';
+  return 'агентов';
+}
+
 renderAgents();
 
 document.querySelectorAll('.agents-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.agents-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    renderAgents(tab.dataset.domain);
+    currentFilter = tab.dataset.domain;
+    agentsExpanded = false; // при смене фильтра сворачиваем обратно
+    renderAgents();
   });
+});
+
+agentsMoreBtn?.addEventListener('click', () => {
+  agentsExpanded = !agentsExpanded;
+  renderAgents();
+  if (!agentsExpanded) {
+    // прокрутка к началу блока, чтобы не терять контекст после схлопывания
+    const block = document.querySelector('.agents-block');
+    if (block) {
+      const top = block.getBoundingClientRect().top + window.pageYOffset - 72;
+      window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
+    }
+  }
 });
 
 /* =========================================================================
@@ -379,6 +537,12 @@ const detRoi  = document.getElementById('detRoi');
 const detMoic = document.getElementById('detMoic');
 const detRev  = document.getElementById('detRev');
 const detBe   = document.getElementById('detBe');
+// Мобильный sticky-бейдж NET (виден при перемещении ползунков)
+const netNumMob  = document.getElementById('netNumMob');
+const detCplMob  = document.getElementById('detCplMob');
+const detRoiMob  = document.getElementById('detRoiMob');
+const detMoicMob = document.getElementById('detMoicMob');
+const detBeMob   = document.getElementById('detBeMob');
 
 // Инвестиции обновлены: 134 → 114 (v13.2)
 const INVEST = 114;
@@ -394,11 +558,21 @@ function updateCalc() {
   crV.textContent   = cr.toFixed(1).replace('.', ',');
   adV.textContent   = adopt;
   netNum.textContent = net;
-  detCpl.textContent  = `CPL ${cplV.textContent} × CR ${crV.textContent}% × ${adopt}%`;
+  const meta = `CPL ${cplV.textContent} × CR ${crV.textContent}% × ${adopt}%`;
+  detCpl.textContent  = meta;
   detRoi.textContent  = (net / INVEST).toFixed(1).replace('.', ',') + '×';
   detMoic.textContent = ((net + INVEST) / INVEST).toFixed(1).replace('.', ',') + '×';
   detRev.textContent  = '~' + (net / 0.4 / 1000).toFixed(1).replace('.', ',') + ' млрд';
   detBe.textContent   = net >= 450 ? 'месяц 12–14' : net >= 300 ? 'месяц 15–18' : 'месяц 19–24';
+  // синхронизация мобильного sticky-бейджа (ROI/MOIC/Payback — чтобы не терять
+  // эти метрики при скрытой на мобилке .calc-result)
+  if (netNumMob)  netNumMob.textContent  = net;
+  if (detCplMob)  detCplMob.textContent  = meta;
+  if (detRoiMob)  detRoiMob.textContent  = detRoi.textContent;
+  if (detMoicMob) detMoicMob.textContent = detMoic.textContent;
+  // Payback — на мобилке компактнее ("мес. 12–14" вместо "месяц 12–14"),
+  // иначе три колонки KPIs наезжают друг на друга на узких экранах.
+  if (detBeMob)   detBeMob.textContent   = detBe.textContent.replace('месяц', 'мес.');
 }
 
 [cplS, crS, adS].forEach(s => s?.addEventListener('input', updateCalc));
@@ -411,7 +585,7 @@ updateCalc();
    v13.2: DWH MVP заменён на "Stage-слой" (DWH строит Брусника отдельно).
    ========================================================================= */
 const GANTT = [
-  {name: 'Discovery · доступы · NDA',       s: 0,  e: 3,  c: 'g1'},
+  {name: 'Discovery · доступы',             s: 0,  e: 3,  c: 'g1'},
   {name: 'Stage-слой (3–5 источников)',     s: 3,  e: 9,  c: 'g1'},
   {name: 'Контент-завод базовый',           s: 4,  e: 10, c: 'g2'},
   {name: 'AnomalyDetector',                 s: 6,  e: 12, c: 'g3'},
