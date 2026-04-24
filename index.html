@@ -39,11 +39,10 @@
     <span>AI&nbsp;Брусника</span>
   </div>
   <div class="nav-links">
-    <a href="#losses">Потери</a>
-    <a href="#mixer">Сценарии</a>
     <a href="#system">Система</a>
     <a href="#day">День КД</a>
     <a href="#econ">Экономика</a>
+    <a href="#mixer">Сценарии</a>
     <a href="#pilot">Пилот</a>
   </div>
   <a href="#cta" class="nav-cta">Обсудить</a>
@@ -59,14 +58,13 @@
     <button class="mm-close" id="mmClose" aria-label="Закрыть меню">&times;</button>
   </div>
   <nav class="mm-links">
-    <a href="#losses"><span class="mm-num">01</span><span>Потери</span></a>
-    <a href="#mixer"><span class="mm-num">02</span><span>Два сценария</span></a>
-    <a href="#system"><span class="mm-num">03</span><span>Система</span></a>
-    <a href="#agents"><span class="mm-num">04</span><span>Агенты</span></a>
-    <a href="#day"><span class="mm-num">05</span><span>День КД</span></a>
-    <a href="#econ"><span class="mm-num">06</span><span>Экономика</span></a>
-    <a href="#pilot"><span class="mm-num">07</span><span>Пилот</span></a>
-    <a href="#cta"><span class="mm-num">08</span><span>Обсудить</span></a>
+    <a href="#system"><span class="mm-num">01</span><span>Система</span></a>
+    <a href="#agents"><span class="mm-num">02</span><span>Агенты</span></a>
+    <a href="#day"><span class="mm-num">03</span><span>День КД</span></a>
+    <a href="#econ"><span class="mm-num">04</span><span>Экономика</span></a>
+    <a href="#mixer"><span class="mm-num">05</span><span>Два сценария</span></a>
+    <a href="#pilot"><span class="mm-num">06</span><span>Пилот</span></a>
+    <a href="#cta"><span class="mm-num">07</span><span>Обсудить</span></a>
   </nav>
 </div>
 
@@ -99,7 +97,10 @@
 
     <div class="hero-score">
       <div class="cell loss">
-        <div class="lbl">Текущие потери</div>
+        <div class="lbl">
+          <span>Текущие потери</span>
+          <button type="button" class="lbl-link" data-open="modal-chapter-loss">как посчитано&nbsp;→</button>
+        </div>
         <div class="val"><span id="heroLoss">−0</span></div>
         <div class="sub">Диапазон 370–470&nbsp;млн&nbsp;₽ за&nbsp;3&nbsp;года. Точка планирования&nbsp;— 412. Четыре слоя, методология&nbsp;— в&nbsp;полной версии.</div>
       </div>
@@ -128,98 +129,9 @@
   </div>
 </section>
 
-<!-- CHAPTER I -->
-<section class="chapter wrap">
-  <div class="num-tag">Акт&nbsp;I · Куда утекают деньги</div>
-  <h2 class="h1 reveal">
-    Это не «может случиться».<br>
-    Это <span class="grad-loss">уже происходит</span>.<br>
-    Каждый день.
-  </h2>
-</section>
-
-<!-- LOSSES -->
-<section class="losses-wrap" id="losses">
-  <div class="wrap losses-pin">
-    <div class="losses-grid">
-      <div class="losses-copy">
-        <div class="eyebrow" style="margin-bottom:28px">Четыре источника потерь</div>
-        <div class="pct-big" id="lossPct">0</div>
-        <div class="pct-sup mono">
-          млн&nbsp;₽ за&nbsp;3&nbsp;года<sup class="pct-footmark" data-open="modal-losses" role="button" tabindex="0" aria-label="Как считали">1</sup>
-        </div>
-        <div class="pct-footnote mono" id="lossPctLabel">Диапазон потерь — 370–470&nbsp;млн&nbsp;₽. В&nbsp;план берём точку 412.</div>
-        <h3 class="h3">Это не&nbsp;одна большая дыра&nbsp;— это четыре маленьких. Каждую видно отдельно. Каждую можно заткнуть отдельно.</h3>
-        <p>Больше половины забирает рост цен на&nbsp;рекламу&nbsp;— его никто не&nbsp;компенсирует. Четверть&nbsp;— решения, которые принимают по&nbsp;вчерашним данным. Остальное&nbsp;— ручная работа и&nbsp;штрафы за&nbsp;маркировку. Нижняя граница&nbsp;— то, что видно невооружённым глазом уже сегодня. Верхняя&nbsp;— консервативная оценка сверху. Как получилась точка&nbsp;412&nbsp;— в&nbsp;разборе по&nbsp;слоям ниже.</p>
-      </div>
-
-      <div class="teaser reveal">
-  <div class="teaser-head">
-    <div class="eyebrow">Как мы&nbsp;считали</div>
-    <h4 class="teaser-title">Четыре слоя. Четыре независимых цифры.</h4>
-    <p class="teaser-desc">Реклама дорожает&nbsp;— 260–311. Данные отстают от&nbsp;решений&nbsp;— 83–111. Ручная рутина&nbsp;— 18–31. Штрафы&nbsp;— 9–18&nbsp;млн&nbsp;₽. Откройте&nbsp;— увидите источники, формулы и&nbsp;допущения по&nbsp;каждому.</p>
-  </div>
-  <div class="teaser-stats"><div class="teaser-stat"><b>4</b><span>слоя потерь</span></div><div class="teaser-stat"><b>370–470</b><span>млн&nbsp;₽ · 3&nbsp;года</span></div><div class="teaser-stat"><b>412</b><span>берём в&nbsp;план</span></div></div>
-  <button class="teaser-btn" type="button" data-open="modal-losses">
-    <span class="teaser-btn-lbl">Разобрать четыре слоя</span>
-    <span class="teaser-btn-arr">→</span>
-  </button>
-</div>
-    </div>
-  </div>
-</section>
-
-<!-- MIXER -->
-<section class="mixer-wrap" id="mixer">
-  <div class="glow glow-purple"></div>
-  <div class="wrap">
-    <div class="sect-head reveal">
-      <div class="eyebrow">Того, чего не&nbsp;даёт рынок</div>
-      <h2 class="h2" style="margin-top:20px">
-        Одна система.<br>
-        Два&nbsp;рычага.<br>
-        <span class="grad-gain">Решаете каждый квартал.</span>
-      </h2>
-      <p class="lead">
-        Обычно на&nbsp;входе есть выбор: <b style="color:#fff">сэкономить или вырасти</b>. Я&nbsp;предлагаю третий путь&nbsp;— <b style="color:#fff">гибридную управляемую логику возврата инвестиций</b>. Не&nbsp;развилка, а&nbsp;рычаг: его можно перевести в&nbsp;любом квартале, без переделки и&nbsp;без новых подрядчиков. Решение на&nbsp;следующие три месяца принимается глядя на&nbsp;рынок, а&nbsp;не&nbsp;на&nbsp;контракт.
-      </p>
-    </div>
-
-    <div class="mixer-scoreboard reveal">
-      <div class="mixer-side a">
-        <div class="tag">Стратегия А</div>
-        <div class="name">Экономим</div>
-        <div class="big">+239<small>&nbsp;млн&nbsp;₽</small></div>
-        <div class="meta">за&nbsp;3&nbsp;года · окупаемость 14–16&nbsp;месяцев</div>
-        <div class="desc">Освободившиеся часы, сэкономленный бюджет на&nbsp;лидах, найм, который больше не&nbsp;нужен&nbsp;— всё <b>остаётся в&nbsp;P&amp;L</b>. Консервативный сценарий. Защищает маржу, если рынок просядет.</div>
-      </div>
-      <div class="mixer-side b">
-        <div class="tag">Стратегия Б</div>
-        <div class="name">Растём быстрее рынка</div>
-        <div class="big">+672<small>&nbsp;млн&nbsp;₽</small></div>
-        <div class="meta">за&nbsp;3&nbsp;года · ROI 5,9× · окупаемость 12–13&nbsp;мес · доп.&nbsp;выручка ~1,3&nbsp;млрд</div>
-        <div class="desc">Тот&nbsp;же&nbsp;ресурс идёт не&nbsp;в&nbsp;экономию, а&nbsp;<b>в&nbsp;охват, скорость и&nbsp;конверсию</b>. Через маржу&nbsp;40%. Первый год&nbsp;— разгон. Главный эффект&nbsp;— на&nbsp;второй и&nbsp;третий.</div>
-      </div>
-    </div>
-
-    <div class="teaser reveal">
-  <div class="teaser-head">
-    <div class="eyebrow">Покрутите сами</div>
-    <h4 class="teaser-title">12&nbsp;кварталов. Переключайте режим в&nbsp;любом.</h4>
-    <p class="teaser-desc">Нажмите на&nbsp;квартал&nbsp;— система пересчитает трёхлетний итог. Видно: «экономим сейчас, растём потом» выигрывает у&nbsp;«всё время экономим» и&nbsp;у&nbsp;«всё время растём». Система подсказывает лучший путь.</p>
-  </div>
-  <div class="teaser-stats"><div class="teaser-stat"><b>А · +239</b><span>млн&nbsp;₽ · экономия</span></div><div class="teaser-stat"><b>Б · +672</b><span>млн&nbsp;₽ · рост</span></div><div class="teaser-stat"><b>5,9&times;</b><span>ROI за&nbsp;3&nbsp;года</span></div></div>
-  <button class="teaser-btn" type="button" data-open="modal-mixer">
-    <span class="teaser-btn-lbl">Открыть калькулятор стратегии</span>
-    <span class="teaser-btn-arr">→</span>
-  </button>
-</div>
-  </div>
-</section>
-
 <!-- CHAPTER II -->
 <section class="chapter wrap">
-  <div class="num-tag">Акт&nbsp;II · Как это устроено</div>
+  <div class="num-tag">Как это устроено</div>
   <h2 class="h1 reveal">
     Не&nbsp;сервис.<br>
     Не&nbsp;ещё один модуль поверх&nbsp;CRM.<br>
@@ -314,7 +226,7 @@
 
 <!-- CHAPTER III -->
 <section class="chapter wrap">
-  <div class="num-tag">Акт&nbsp;III · Один день через полгода</div>
+  <div class="num-tag">Один день через полгода</div>
   <h2 class="h1 reveal">
     Через шесть месяцев<br>
     обычный день коммерческого директора<br>
@@ -393,7 +305,7 @@
   <div class="glow glow-green"></div>
   <div class="wrap">
     <div class="sect-head reveal">
-      <div class="eyebrow">Акт&nbsp;IV · Цифры</div>
+      <div class="eyebrow">Цифры и&nbsp;экономика</div>
       <h2 class="h2" style="margin-top:20px">
         Вкладываем 114&nbsp;млн.<br>
         <span class="grad-green">Возвращаем до&nbsp;672.</span><br>
@@ -427,19 +339,21 @@
         <h4>По&nbsp;годам: сколько вложили, сколько вернули</h4>
         <div class="t">млн&nbsp;₽ · базовая точка плана</div>
       </div>
-      <table class="pnl-table">
-        <thead>
-          <tr><th></th><th>Год&nbsp;1</th><th>Год&nbsp;2</th><th>Год&nbsp;3</th><th>3&nbsp;года</th></tr>
-        </thead>
-        <tbody>
-          <tr class="pnl-sub"><td>· Пилот (мес&nbsp;1–6)</td><td>12</td><td>—</td><td>—</td><td>12</td></tr>
-          <tr class="pnl-sub"><td>· Сопровождение и&nbsp;развитие</td><td>22</td><td>36</td><td>44</td><td>102</td></tr>
-          <tr><td><b>Вложения, итого</b></td><td><b>34</b></td><td><b>36</b></td><td><b>44</b></td><td><b>114</b></td></tr>
-          <tr><td>Сколько потеряем, если&nbsp;ничего не&nbsp;менять</td><td class="neg">50–70</td><td class="neg">130–165</td><td class="neg">190–235</td><td class="neg"><b>370–470</b></td></tr>
-          <tr><td>Возврат&nbsp;— стратегия&nbsp;А (экономим)&nbsp;⇄</td><td>−4</td><td class="pos">+77</td><td class="pos">+166</td><td class="pos"><b>+239</b></td></tr>
-          <tr class="hl"><td>Возврат&nbsp;— стратегия&nbsp;Б (растём)&nbsp;⇄</td><td>+14</td><td>+210</td><td>+448</td><td><b>+672</b></td></tr>
-        </tbody>
-      </table>
+      <div class="pnl-scroll">
+        <table class="pnl-table">
+          <thead>
+            <tr><th></th><th>Год&nbsp;1</th><th>Год&nbsp;2</th><th>Год&nbsp;3</th><th>3&nbsp;года</th></tr>
+          </thead>
+          <tbody>
+            <tr class="pnl-sub"><td>· Пилот (мес&nbsp;1–6)</td><td>12</td><td>—</td><td>—</td><td>12</td></tr>
+            <tr class="pnl-sub"><td>· Сопровождение и&nbsp;развитие</td><td>22</td><td>36</td><td>44</td><td>102</td></tr>
+            <tr><td><b>Вложения, итого</b></td><td><b>34</b></td><td><b>36</b></td><td><b>44</b></td><td><b>114</b></td></tr>
+            <tr><td>Сколько потеряем, если&nbsp;ничего не&nbsp;менять</td><td class="neg">50–70</td><td class="neg">130–165</td><td class="neg">190–235</td><td class="neg"><b>370–470</b></td></tr>
+            <tr><td>Возврат&nbsp;— стратегия&nbsp;А (экономим)&nbsp;⇄</td><td>−4</td><td class="pos">+77</td><td class="pos">+166</td><td class="pos"><b>+239</b></td></tr>
+            <tr class="hl"><td>Возврат&nbsp;— стратегия&nbsp;Б (растём)&nbsp;⇄</td><td>+14</td><td>+210</td><td>+448</td><td><b>+672</b></td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="pnl-note">
         Корпоративное хранилище данных Брусника строит своим проектом&nbsp;— его бюджет в&nbsp;эти 114&nbsp;млн&nbsp;₽ не&nbsp;входит.
         AI-система на&nbsp;пилоте работает напрямую с&nbsp;CRM, 1С и&nbsp;рекламными кабинетами. Когда хранилище будет готово&nbsp;— плавно перейдёт на&nbsp;него.
@@ -461,6 +375,54 @@
   </div>
 </section>
 
+<!-- MIXER (v5: перенесён после ECONOMICS, перед PILOT) -->
+<section class="mixer-wrap" id="mixer">
+  <div class="glow glow-purple"></div>
+  <div class="wrap">
+    <div class="sect-head reveal">
+      <div class="eyebrow">Того, чего не&nbsp;даёт рынок</div>
+      <h2 class="h2" style="margin-top:20px">
+        Одна система.<br>
+        Два&nbsp;рычага.<br>
+        <span class="grad-gain">Решаете каждый квартал.</span>
+      </h2>
+      <p class="lead">
+        Обычно на&nbsp;входе есть выбор: <b style="color:#fff">сэкономить или вырасти</b>. Я&nbsp;предлагаю третий путь&nbsp;— <b style="color:#fff">гибридную управляемую логику возврата инвестиций</b>. Не&nbsp;развилка, а&nbsp;рычаг: его можно перевести в&nbsp;любом квартале, без переделки и&nbsp;без новых подрядчиков. Решение на&nbsp;следующие три месяца принимается глядя на&nbsp;рынок, а&nbsp;не&nbsp;на&nbsp;контракт.
+      </p>
+    </div>
+
+    <div class="mixer-scoreboard reveal">
+      <div class="mixer-side a">
+        <div class="tag">Стратегия А</div>
+        <div class="name">Экономим</div>
+        <div class="big">+239<small>&nbsp;млн&nbsp;₽</small></div>
+        <div class="meta">за&nbsp;3&nbsp;года · окупаемость 14–16&nbsp;месяцев</div>
+        <div class="desc">Освободившиеся часы, сэкономленный бюджет на&nbsp;лидах, найм, который больше не&nbsp;нужен&nbsp;— всё <b>остаётся в&nbsp;P&amp;L</b>. Консервативный сценарий. Защищает маржу, если рынок просядет.</div>
+      </div>
+      <div class="mixer-side b">
+        <div class="tag">Стратегия Б</div>
+        <div class="name">Растём быстрее рынка</div>
+        <div class="big">+672<small>&nbsp;млн&nbsp;₽</small></div>
+        <div class="meta">за&nbsp;3&nbsp;года · ROI 5,9× · окупаемость 12–13&nbsp;мес · доп.&nbsp;выручка ~1,3&nbsp;млрд</div>
+        <div class="desc">Тот&nbsp;же&nbsp;ресурс идёт не&nbsp;в&nbsp;экономию, а&nbsp;<b>в&nbsp;охват, скорость и&nbsp;конверсию</b>. Через маржу&nbsp;40%. Первый год&nbsp;— разгон. Главный эффект&nbsp;— на&nbsp;второй и&nbsp;третий.</div>
+      </div>
+    </div>
+
+    <div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">Покрутите сами</div>
+    <h4 class="teaser-title">12&nbsp;кварталов. Переключайте режим в&nbsp;любом.</h4>
+    <p class="teaser-desc">Нажмите на&nbsp;квартал&nbsp;— система пересчитает трёхлетний итог. Видно: «экономим сейчас, растём потом» выигрывает у&nbsp;«всё время экономим» и&nbsp;у&nbsp;«всё время растём». Система подсказывает лучший путь.</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>А · +239</b><span>млн&nbsp;₽ · экономия</span></div><div class="teaser-stat"><b>Б · +672</b><span>млн&nbsp;₽ · рост</span></div><div class="teaser-stat"><b>5,9&times;</b><span>ROI за&nbsp;3&nbsp;года</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-mixer">
+    <span class="teaser-btn-lbl">Открыть калькулятор стратегии</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
+  </div>
+</section>
+
 <!-- PILOT -->
 <section class="pilot-wrap" id="pilot">
   <div class="wrap">
@@ -472,8 +434,7 @@
         основанного на&nbsp;фактах.
       </h2>
       <p class="lead" style="margin-top:24px">
-        С&nbsp;первого дня запускаем основу: данные, утренний дайджест, автоматическую маркировку рекламы&nbsp;— сразу на&nbsp;все&nbsp;ЖК Брусники.
-        AI-агенты подключаются постепенно&nbsp;— сначала на&nbsp;2–3&nbsp;эталонных&nbsp;ЖК, потом на&nbsp;остальные. Через полгода у&nbsp;Брусники&nbsp;— факты, а&nbsp;не&nbsp;обещания.
+        В&nbsp;первые недели пилота разворачиваем базу: подключение к&nbsp;данным, утренний дайджест, автоматическую маркировку рекламы. AI-агенты выходят в&nbsp;работу постепенно&nbsp;— сначала на&nbsp;2–3&nbsp;эталонных&nbsp;ЖК, потом на&nbsp;остальные. К&nbsp;концу шестого месяца у&nbsp;Брусники&nbsp;— факты, а&nbsp;не&nbsp;обещания.
       </p>
     </div>
 
@@ -660,43 +621,6 @@
 
 
 <!-- MODALS v4 -->
-
-<dialog class="modal" id="modal-losses" aria-labelledby="modal-losses-title">
-  <div class="modal-topbar">
-    <div class="modal-title" id="modal-losses-title">Куда уходят 370–470 млн ₽ · разбор по слоям</div>
-    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
-  </div>
-  <div class="modal-scroll">
-    <div class="wrap modal-wrap">
-<div class="losses-chart" id="lossesChart">
-        <div class="loss-row" data-layer="media">
-          <div class="name">Реклама дорожает<small>цена лида растёт быстрее, чем бюджет — разницу никто не компенсирует</small></div>
-          <div class="bar"><div class="bar-fill" data-w="92"></div></div>
-          <div class="val">260–311<small>млн ₽</small></div>
-        </div>
-        <div class="loss-row" data-layer="fog">
-          <div class="name">Данные отстают от решений<small>цифры приходят через 4–24 часа — деньги уже потрачены</small></div>
-          <div class="bar"><div class="bar-fill" data-w="33"></div></div>
-          <div class="val">83–111<small>млн ₽</small></div>
-        </div>
-        <div class="loss-row" data-layer="ops">
-          <div class="name">Ручная рутина<small>отчёты, согласования, запуск кампаний, обновление цен — всё вручную</small></div>
-          <div class="bar"><div class="bar-fill" data-w="10"></div></div>
-          <div class="val">18–31<small>млн ₽</small></div>
-        </div>
-        <div class="loss-row" data-layer="reg">
-          <div class="name">Штрафы и ошибки<small>маркировка ЕРИР, ФАС, UTM, дубли лидов — накапливаются незаметно</small></div>
-          <div class="bar"><div class="bar-fill" data-w="6"></div></div>
-          <div class="val">9–18<small>млн ₽</small></div>
-        </div>
-
-        <div class="losses-foot">
-          <b>Нижняя цифра&nbsp;— подтверждённый минимум.</b> Верхняя&nbsp;— консервативная оценка: слои усиливают друг друга. В&nbsp;план берём <b>412&nbsp;млн&nbsp;₽</b> за&nbsp;3&nbsp;года (58 / 142 / 208&nbsp;по годам). Формулы и&nbsp;источники&nbsp;— Приложение&nbsp;П1.
-        </div>
-      </div>
-    </div>
-  </div>
-</dialog>
 
 <dialog class="modal" id="modal-mixer" aria-labelledby="modal-mixer-title">
   <div class="modal-topbar">
@@ -1007,6 +931,63 @@
         <span><span class="gl-dot g3"></span>Агенты и&nbsp;контрольные точки</span>
       </div>
     </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-chapter-loss" aria-labelledby="modal-chapter-loss-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-chapter-loss-title">Как посчитано · 412&nbsp;млн&nbsp;₽</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+      <div class="chapter-modal">
+        <div class="num-tag">Куда утекают деньги</div>
+        <h2 class="h1">
+          Это не «может случиться».<br>
+          Это <span class="grad-loss">уже происходит</span>.<br>
+          Каждый день.
+        </h2>
+
+        <div class="chapter-modal-loss">
+          <div class="eyebrow">Четыре источника потерь</div>
+          <div class="pct-big" id="lossPct">0</div>
+          <div class="pct-sup mono">
+            млн&nbsp;₽ за&nbsp;3&nbsp;года
+          </div>
+          <div class="pct-footnote mono">Диапазон потерь&nbsp;— 370–470&nbsp;млн&nbsp;₽. В&nbsp;план берём точку 412.</div>
+          <h3 class="h3">Это не&nbsp;одна большая дыра&nbsp;— это четыре маленьких. Каждую видно отдельно. Каждую можно заткнуть отдельно.</h3>
+          <p>Больше половины забирает рост цен на&nbsp;рекламу&nbsp;— его никто не&nbsp;компенсирует. Четверть&nbsp;— решения, которые принимают по&nbsp;вчерашним данным. Остальное&nbsp;— ручная работа и&nbsp;штрафы за&nbsp;маркировку. Нижняя граница&nbsp;— то, что видно невооружённым глазом уже сегодня. Верхняя&nbsp;— консервативная оценка сверху.</p>
+        </div>
+
+        <div class="losses-chart" id="lossesChart">
+          <div class="loss-row" data-layer="media">
+            <div class="name">Реклама дорожает<small>цена лида растёт быстрее, чем бюджет — разницу никто не компенсирует</small></div>
+            <div class="bar"><div class="bar-fill" data-w="92"></div></div>
+            <div class="val">260–311<small>млн ₽</small></div>
+          </div>
+          <div class="loss-row" data-layer="fog">
+            <div class="name">Данные отстают от решений<small>цифры приходят через 4–24 часа — деньги уже потрачены</small></div>
+            <div class="bar"><div class="bar-fill" data-w="33"></div></div>
+            <div class="val">83–111<small>млн ₽</small></div>
+          </div>
+          <div class="loss-row" data-layer="ops">
+            <div class="name">Ручная рутина<small>отчёты, согласования, запуск кампаний, обновление цен — всё вручную</small></div>
+            <div class="bar"><div class="bar-fill" data-w="10"></div></div>
+            <div class="val">18–31<small>млн ₽</small></div>
+          </div>
+          <div class="loss-row" data-layer="reg">
+            <div class="name">Штрафы и ошибки<small>маркировка ЕРИР, ФАС, UTM, дубли лидов — накапливаются незаметно</small></div>
+            <div class="bar"><div class="bar-fill" data-w="6"></div></div>
+            <div class="val">9–18<small>млн ₽</small></div>
+          </div>
+
+          <div class="losses-foot">
+            <b>Нижняя цифра&nbsp;— подтверждённый минимум.</b> Верхняя&nbsp;— консервативная оценка: слои усиливают друг друга. В&nbsp;план берём <b>412&nbsp;млн&nbsp;₽</b> за&nbsp;3&nbsp;года (58 / 142 / 208&nbsp;по годам). Формулы и&nbsp;источники&nbsp;— Приложение&nbsp;П1.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </dialog>

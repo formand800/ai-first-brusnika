@@ -215,16 +215,14 @@ window.__v4AnimateLossBars = function(){
   });
 };
 
-const pctEl = document.getElementById('lossPct');
-if (pctEl) {
-  const pctIO = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    // v5: крутим до 412 (точка плана), сноска ниже объясняет диапазон 370–470.
-    animateCounter(pctEl, 0, 412, 2000, v => String(Math.round(v)));
-    pctIO.disconnect();
-  }, { rootMargin: '-10% 0px', threshold: 0.1 });
-  pctIO.observe(pctEl);
-}
+// v5.2: счётчик 412 живёт внутри модалки modal-chapter-loss. IO в dialog работает
+// нестабильно — стартуем анимацию вручную при открытии модалки.
+window.__v5AnimateLossPct = function(){
+  const pctEl = document.getElementById('lossPct');
+  if (!pctEl || pctEl.dataset.animated === '1') return;
+  pctEl.dataset.animated = '1';
+  animateCounter(pctEl, 0, 412, 1600, v => String(Math.round(v)));
+};
 
 document.querySelectorAll('.loss-row').forEach(r => {
   r.addEventListener('click', () => r.classList.toggle('open'));
@@ -675,13 +673,24 @@ if (waitTimelineEl) waitIO.observe(waitTimelineEl);
       d.setAttribute('open','');
     }
 
+    // v5.2: iOS body scroll lock — position:fixed сохраняет позицию и гасит
+    // фоновый скролл под модалкой. overflow:hidden один в Safari не срабатывает.
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.dataset.scrollY = String(scrollY);
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     document.body.classList.add('modal-open');
 
     // После layout: разбудить анимации/виджеты
     requestAnimationFrame(() => requestAnimationFrame(() => {
       try {
-        if (id === 'modal-losses' && typeof window.__v4AnimateLossBars === 'function') {
-          window.__v4AnimateLossBars();
+        if (id === 'modal-chapter-loss') {
+          // v5.3: losses-chart теперь внутри modal-chapter-loss — стартуем и счётчик, и бары
+          if (typeof window.__v5AnimateLossPct === 'function') window.__v5AnimateLossPct();
+          if (typeof window.__v4AnimateLossBars === 'function') window.__v4AnimateLossBars();
         }
         if (id === 'modal-mixer') {
           // Перерисовать SVG (path должен существовать для getTotalLength)
@@ -710,6 +719,15 @@ if (waitTimelineEl) waitIO.observe(waitTimelineEl);
     }
     if (!document.querySelector('dialog.modal[open]')) {
       document.body.classList.remove('modal-open');
+      // v5.2: восстановить position и прокрутку до точки открытия
+      const savedY = parseInt(document.body.dataset.scrollY || '0', 10);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      delete document.body.dataset.scrollY;
+      window.scrollTo(0, savedY);
     }
   }
 
@@ -743,6 +761,15 @@ if (waitTimelineEl) waitIO.observe(waitTimelineEl);
     if (e.target && e.target.matches && e.target.matches('dialog.modal')) {
       if (!document.querySelector('dialog.modal[open]')) {
         document.body.classList.remove('modal-open');
+        // v5.2: восстановить скролл при закрытии через Esc/native dialog close
+        const savedY = parseInt(document.body.dataset.scrollY || '0', 10);
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        delete document.body.dataset.scrollY;
+        window.scrollTo(0, savedY);
       }
     }
   }, true);
