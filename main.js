@@ -59,20 +59,6 @@ let navHiddenState = false;
 const NAV_HIDE_THRESHOLD = 100;   // не прячем до 100 px сверху
 const NAV_DELTA = 6;              // реагируем на изменения >6 px (анти-дребезг)
 
-// touch-гейт: live-detect, чтобы реагировать на смену режима (например, при
-// подключении мыши на планшете)
-const touchMQ = window.matchMedia('(hover: none), (pointer: coarse)');
-function isTouchDevice() { return touchMQ.matches; }
-
-// Если режим переключился и это уже не touch — вернуть nav назад.
-touchMQ.addEventListener?.('change', () => {
-  if (!isTouchDevice() && navHiddenState) {
-    navEl?.classList.remove('nav-hidden');
-    document.body.classList.remove('nav-hidden-active');
-    navHiddenState = false;
-  }
-});
-
 function updateScrollProgress() {
   const y = window.pageYOffset;
   if (scrollProgress) {
@@ -82,8 +68,9 @@ function updateScrollProgress() {
     scrollProgress.style.transform = `scaleX(${p})`;
   }
 
-  // Auto-hide nav (только на тач-устройствах и когда мобильное меню закрыто)
-  if (navEl && isTouchDevice() && !document.body.classList.contains('menu-open')) {
+  // v5: Auto-hide работает и на десктопе, и на тач — пользователь прямо попросил.
+  // Гасим только когда открыто мобильное меню (там nav сам по себе спрятан поверх).
+  if (navEl && !document.body.classList.contains('menu-open')) {
     const dy = y - lastScrollY;
     if (Math.abs(dy) > NAV_DELTA) {
       if (dy > 0 && y > NAV_HIDE_THRESHOLD) {
@@ -160,6 +147,19 @@ setTimeout(() => {
 }, 500);
 
 /* =========================================================================
+   HERO LOSS COUNTER — точка планирования 412 (v13.2)
+   ========================================================================= */
+const heroLossEl = document.getElementById('heroLoss');
+if (heroLossEl) {
+  const lossIO = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    animateCounter(heroLossEl, 0, 412, 1600, v => '−' + Math.round(v));
+    lossIO.disconnect();
+  }, { rootMargin: '-10% 0px' });
+  lossIO.observe(heroLossEl);
+}
+
+/* =========================================================================
    INTERSECTIONOBSERVER: GENERIC REVEAL
    ========================================================================= */
 const revealIO = new IntersectionObserver((entries) => {
@@ -201,52 +201,29 @@ Object.keys(bgColors).forEach(id => {
 });
 
 /* =========================================================================
-   HERO LOSS COUNTER — точка планирования 412 (v13.2)
-   ========================================================================= */
-const heroLossEl = document.getElementById('heroLoss');
-if (heroLossEl) {
-  const lossIO = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    animateCounter(heroLossEl, 0, 412, 1600, v => '−' + Math.round(v));
-    lossIO.disconnect();
-  }, { rootMargin: '-10% 0px' });
-  lossIO.observe(heroLossEl);
-}
-
-/* =========================================================================
    LOSSES — bars animate on entry
    ========================================================================= */
+// v4: lossesChartEl теперь внутри <dialog>. Анимацию баров запускаем при открытии модала.
+// Счётчик lossPct находится на главной странице (в .losses-copy) — ему нужен отдельный IO.
 const lossesChartEl = document.getElementById('lossesChart');
-if (lossesChartEl) {
-  const lossBarsIO = new IntersectionObserver(entries => {
+window.__v4AnimateLossBars = function(){
+  if (!lossesChartEl || lossesChartEl.dataset.animated === '1') return;
+  lossesChartEl.dataset.animated = '1';
+  const bars = lossesChartEl.querySelectorAll('.bar-fill');
+  bars.forEach((bar, i) => {
+    setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, i * 250);
+  });
+};
+
+const pctEl = document.getElementById('lossPct');
+if (pctEl) {
+  const pctIO = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) return;
-
-    const bars = lossesChartEl.querySelectorAll('.bar-fill');
-    bars.forEach((bar, i) => {
-      setTimeout(() => {
-        bar.style.width = bar.dataset.w + '%';
-      }, i * 250);
-    });
-
-    const pctEl = document.getElementById('lossPct');
-    const lblEl = document.getElementById('lossPctLabel');
-    if (pctEl) {
-      animateCounter(pctEl, 0, 100, 2000, v => {
-        const n = Math.round(v);
-        if (lblEl) {
-          if (n < 25)       lblEl.textContent = 'Слой 1 · Медиаинфляция';
-          else if (n < 55)  lblEl.textContent = 'Слой 2 · Управленческий туман';
-          else if (n < 80)  lblEl.textContent = 'Слой 3 · Ручные операции';
-          else if (n < 95)  lblEl.textContent = 'Слой 4 · Регуляторика';
-          else               lblEl.textContent = 'Всего: 370–470 млн ₽ · 3 года';
-        }
-        return n + '%';
-      });
-    }
-
-    lossBarsIO.disconnect();
+    // v5: крутим до 412 (точка плана), сноска ниже объясняет диапазон 370–470.
+    animateCounter(pctEl, 0, 412, 2000, v => String(Math.round(v)));
+    pctIO.disconnect();
   }, { rootMargin: '-10% 0px', threshold: 0.1 });
-  lossBarsIO.observe(lossesChartEl);
+  pctIO.observe(pctEl);
 }
 
 document.querySelectorAll('.loss-row').forEach(r => {
@@ -362,55 +339,54 @@ document.querySelectorAll('.strat-chip').forEach(chip => {
 
 renderGrid(); renderChart(); renderNet();
 
-/* Animate SVG line on first viewport entry (GSAP опционально) */
-if (chartSvg && typeof gsap !== 'undefined') {
-  const chartIO = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    const path = chartSvg.querySelector('path[fill="none"]');
-    if (!path) return;
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = len;
-    path.style.strokeDashoffset = len;
-    gsap.to(path, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.out' });
-    chartIO.disconnect();
-  }, { rootMargin: '-10% 0px' });
-  const mixerSection = document.getElementById('mixer');
-  if (mixerSection) chartIO.observe(mixerSection);
-}
+// v4: chartSvg теперь внутри модала — getTotalLength() на скрытом элементе ≈ 0.
+// Анимацию линии запускаем при открытии modal-mixer.
+window.__v4AnimateMixerLine = function(){
+  if (!chartSvg || typeof gsap === 'undefined') return;
+  if (chartSvg.dataset.animated === '1') return;
+  const path = chartSvg.querySelector('path[fill="none"]');
+  if (!path) return;
+  const len = path.getTotalLength();
+  if (!len || len < 10) return; // ещё не готов
+  chartSvg.dataset.animated = '1';
+  path.style.strokeDasharray = len;
+  path.style.strokeDashoffset = len;
+  gsap.to(path, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.out' });
+};
 
 /* =========================================================================
    AGENTS CATALOG
    ========================================================================= */
 const AGENTS = [
-  {n:'DataQuality',   dom:'data',    d:'Проверка свежести и согласованности данных stage-слоя',                     kpi:'Расхождение <2%'},
-  {n:'Reconciler',    dom:'data',    d:'Сверка CRM, 1С и рекламных кабинетов, разрешение конфликтов',              kpi:'≥95% auto-match'},
-  {n:'AnomalyDetector',dom:'data',   d:'Детекция выбросов по CPL/CPO/CR, алерты в Telegram за 15 мин',            kpi:'False positive <10%'},
-  {n:'Reporter',      dom:'data',    d:'Отчёты по расписанию и on-demand (утренний дайджест, Q&A)',                kpi:'Время отчёта <1 мин'},
-  {n:'Campaigner',    dom:'media',   d:'Оркестратор запуска кампаний: креативы, UTM, параметры',                   kpi:'Запуск 1–4 ч (vs 1,5 мес)'},
-  {n:'Bidder',        dom:'media',   d:'Управление ставками в кабинетах по сигналам воронки',                      kpi:'CPL −10–15%'},
-  {n:'Reallocator',   dom:'media',   d:'Реаллокация бюджета между каналами по real-time сигналам',                 kpi:'Сохраняет 1,5–2% spend'},
-  {n:'CreativeTester',dom:'media',   d:'A/B/n тест креативов, автоматический выбор победителей',                  kpi:'Цикл теста ×3–5'},
-  {n:'DraftWriter',   dom:'content', d:'Bulk-генерация черновиков под бриф и канал (ChatGPT)',                     kpi:'20–30 карточек/нед'},
-  {n:'BrandEditor',   dom:'content', d:'Адаптация под брендбук Брусники, финальная полировка (Claude)',            kpi:'Правок редактором <20%'},
-  {n:'ChannelAdapter',dom:'content', d:'Переупаковка контента под 13 каналов',                                     kpi:'Reuse 5–7×'},
-  {n:'SEOOptimizer',  dom:'content', d:'Оптимизация текстов под поисковые запросы',                               kpi:'Органика +10–15% (Y2)'},
-  {n:'DataAnchor',    dom:'content', d:'Поиск бенчмарков и данных с источниками (Perplexity)',                     kpi:'100% цифр с источниками'},
-  {n:'LeadQualifier', dom:'crm',     d:'Скоринг входящих лидов и маршрутизация в отделы',                         kpi:'Точность ≥75%'},
-  {n:'DuplicateKiller',dom:'crm',    d:'Выявление и слияние дублей лидов',                                        kpi:'Дубли −80%'},
-  {n:'Reactivator',   dom:'crm',     d:'Ре-ангажирование неактивной базы',                                        kpi:'CR 3–5%'},
-  {n:'ScoreModel',    dom:'crm',     d:'Предиктивная модель вероятности сделки',                                   kpi:'AUC ≥0,75'},
-  {n:'ERiRMarker',    dom:'sec',     d:'Автомаркировка креативов ЕРИР + аудит-лог',                               kpi:'0 пропущенных'},
-  {n:'CopyGuard',     dom:'sec',     d:'Проверка соответствия креативов ФАС до публикации',                       kpi:'0 нарушений ФАС'},
-  {n:'PIIGuard',      dom:'sec',     d:'Маскирование PII перед отправкой в LLM',                                  kpi:'0 утечек'},
-  {n:'Auditor',       dom:'sec',     d:'Журналирование действий всех агентов',                                    kpi:'100% в аудит-логе'},
-  {n:'DigestBuilder', dom:'cd',      d:'Утренний дайджест в 08:30 — метрики, аномалии, решения',                  kpi:'08:30 ±5 мин, 7/7'},
-  {n:'VoiceQA',       dom:'cd',      d:'Голосовой Q&A по данным в Telegram',                                      kpi:'30–60 сек'},
-  {n:'Simulator',     dom:'cd',      d:'Моделирование ценовых и бюджетных решений',                               kpi:'Прогноз за 1 мин'},
-  {n:'Alerter',       dom:'cd',      d:'Критические алерты (перерасход, аномалия, сбой)',                         kpi:'Доставка <2 мин'},
-  {n:'CostTracker',   dom:'cd',      d:'Мониторинг MarTech-расходов в реал-тайм',                                 kpi:'Budget variance <5%'},
-  {n:'Triage',        dom:'cd',      d:'Приоритизация событий для КД — что решать сейчас',                        kpi:'Топ-3 /день'},
+  {n:'DataQuality',   dom:'data',    d:'Проверяет свежесть и согласованность данных перед использованием',           kpi:'Расхождение <2%'},
+  {n:'Reconciler',    dom:'data',    d:'Сверяет CRM, 1С и рекламные кабинеты, разбирает конфликты',                  kpi:'≥95% совпадений'},
+  {n:'AnomalyDetector',dom:'data',   d:'Ловит аномалии по цене лида и конверсии, шлёт алерты в Telegram за 15 мин',  kpi:'Ложных срабатываний <10%'},
+  {n:'Reporter',      dom:'data',    d:'Отчёты по расписанию и по запросу — утренний дайджест и ответы на вопросы',   kpi:'Отчёт <1 мин'},
+  {n:'Campaigner',    dom:'media',   d:'Запускает кампании целиком: креативы, UTM, параметры',                        kpi:'Запуск 1–4 ч (было 1,5 мес)'},
+  {n:'Bidder',        dom:'media',   d:'Управляет ставками в кабинетах по сигналам воронки',                          kpi:'Цена лида −10–15%'},
+  {n:'Reallocator',   dom:'media',   d:'Переливает бюджет между каналами по сигналам в реальном времени',             kpi:'Сохраняет 1,5–2% бюджета'},
+  {n:'CreativeTester',dom:'media',   d:'Тестирует креативы, сам выбирает победителей',                                kpi:'Цикл теста быстрее в 3–5×'},
+  {n:'DraftWriter',   dom:'content', d:'Пишет черновики под бриф и канал (на базе ChatGPT)',                          kpi:'20–30 карточек в неделю'},
+  {n:'BrandEditor',   dom:'content', d:'Подгоняет текст под брендбук Брусники, финальная полировка (на базе Claude)', kpi:'Правок редактора <20%'},
+  {n:'ChannelAdapter',dom:'content', d:'Переупаковывает один материал под 13 каналов',                                kpi:'Переиспользование 5–7×'},
+  {n:'SEOOptimizer',  dom:'content', d:'Оптимизирует тексты под поисковые запросы',                                   kpi:'Органика +10–15% (Y2)'},
+  {n:'DataAnchor',    dom:'content', d:'Ищет бенчмарки и данные с источниками (на базе Perplexity)',                  kpi:'100% цифр с источниками'},
+  {n:'LeadQualifier', dom:'crm',     d:'Оценивает входящих лидов и направляет в нужные отделы',                       kpi:'Точность ≥75%'},
+  {n:'DuplicateKiller',dom:'crm',    d:'Находит и склеивает дубли лидов',                                             kpi:'Дубли −80%'},
+  {n:'Reactivator',   dom:'crm',     d:'Возвращает к разговору тех, кто остыл',                                       kpi:'Конверсия 3–5%'},
+  {n:'ScoreModel',    dom:'crm',     d:'Модель, которая предсказывает вероятность сделки',                            kpi:'AUC ≥0,75'},
+  {n:'ERiRMarker',    dom:'sec',     d:'Автоматически маркирует креативы для Роскомнадзора + ведёт аудит-лог',         kpi:'0 пропущенных'},
+  {n:'CopyGuard',     dom:'sec',     d:'Проверяет креативы на соответствие ФАС до публикации',                         kpi:'0 нарушений ФАС'},
+  {n:'PIIGuard',      dom:'sec',     d:'Скрывает персональные данные перед отправкой в AI-модель',                    kpi:'0 утечек'},
+  {n:'Auditor',       dom:'sec',     d:'Пишет в лог все действия остальных агентов',                               kpi:'100% в аудит-логе'},
+  {n:'DigestBuilder', dom:'cd',      d:'Утренний дайджест в 08:30 — метрики, аномалии, решения',                      kpi:'08:30 ±5 мин, 7/7'},
+  {n:'VoiceQA',       dom:'cd',      d:'Голосом отвечает на вопросы по данным в Telegram',                            kpi:'30–60 сек'},
+  {n:'Simulator',     dom:'cd',      d:'Моделирует ценовые и бюджетные решения до запуска',                           kpi:'Прогноз за 1 мин'},
+  {n:'Alerter',       dom:'cd',      d:'Срочные алерты: перерасход, аномалия, сбой',                                  kpi:'Доставка <2 мин'},
+  {n:'CostTracker',   dom:'cd',      d:'Следит за расходами на инструменты в реальном времени',                       kpi:'Отклонение <5%'},
+  {n:'Triage',        dom:'cd',      d:'Отбирает для КД главное — что решать прямо сейчас',                           kpi:'Топ-3 в день'},
 ];
-const DOMAIN_NAMES = {data:'Данные', media:'Медиа', content:'Контент', crm:'CRM', sec:'ИБ', cd:'КД'};
+const DOMAIN_NAMES = {data:'Данные', media:'Реклама', content:'Контент', crm:'CRM', sec:'Безопасность', cd:'Для КД'};
 const agentsGrid = document.getElementById('agentsGrid');
 const agentsMoreBtn = document.getElementById('agentsMore');
 const agentsMoreCnt = document.getElementById('agentsMoreCnt');
@@ -558,7 +534,7 @@ function updateCalc() {
   crV.textContent   = cr.toFixed(1).replace('.', ',');
   adV.textContent   = adopt;
   netNum.textContent = net;
-  const meta = `CPL ${cplV.textContent} × CR ${crV.textContent}% × ${adopt}%`;
+  const meta = `Цена ${cplV.textContent} × CR ${crV.textContent}% × ${adopt}%`;
   detCpl.textContent  = meta;
   detRoi.textContent  = (net / INVEST).toFixed(1).replace('.', ',') + '×';
   detMoic.textContent = ((net + INVEST) / INVEST).toFixed(1).replace('.', ',') + '×';
@@ -585,16 +561,16 @@ updateCalc();
    v13.2: DWH MVP заменён на "Stage-слой" (DWH строит Брусника отдельно).
    ========================================================================= */
 const GANTT = [
-  {name: 'Discovery · доступы',             s: 0,  e: 3,  c: 'g1'},
-  {name: 'Stage-слой (3–5 источников)',     s: 3,  e: 9,  c: 'g1'},
-  {name: 'Контент-завод базовый',           s: 4,  e: 10, c: 'g2'},
+  {name: 'Старт · доступы к системам',      s: 0,  e: 3,  c: 'g1'},
+  {name: 'Сбор данных (3–5 источников)',    s: 3,  e: 9,  c: 'g1'},
+  {name: 'Фабрика контента · база',         s: 4,  e: 10, c: 'g2'},
   {name: 'AnomalyDetector',                 s: 6,  e: 12, c: 'g3'},
   {name: 'ERiRMarker',                      s: 6,  e: 12, c: 'g3'},
   {name: 'Campaigner',                      s: 10, e: 18, c: 'g3'},
-  {name: 'Интерфейс КД (Telegram)',         s: 10, e: 16, c: 'g2'},
-  {name: 'Voice Q&A',                       s: 14, e: 20, c: 'g2'},
-  {name: 'Simulator (MVP)',                 s: 16, e: 22, c: 'g2'},
-  {name: 'Gate 3 · review',                 s: 23, e: 24, c: 'g3'},
+  {name: 'Интерфейс КД в Telegram',         s: 10, e: 16, c: 'g2'},
+  {name: 'Голосовые вопросы',               s: 14, e: 20, c: 'g2'},
+  {name: 'Simulator · прогнозы',            s: 16, e: 22, c: 'g2'},
+  {name: 'Контрольная точка · review',      s: 23, e: 24, c: 'g3'},
 ];
 const WEEKS_TOTAL = 24;
 
@@ -674,3 +650,100 @@ if (waitTimelineEl) waitIO.observe(waitTimelineEl);
    Система теперь скроллится натирвно (horizontal scroll с CSS scroll-snap).
    Это устраняет подвисание к середине сайта и снимает зависимость от ScrollTrigger.
    ========================================================================= */
+
+/* =========================================================================
+   V4 · MODAL CONTROLLER
+   data-open="modal-X" открывает <dialog id="modal-X">.
+   [data-close] или клик по backdrop → закрывает.
+   При открытии: форсим reveal + перезапуск анимаций, которые зависят от видимости.
+   ========================================================================= */
+(function v4Modals(){
+  'use strict';
+
+  function openModal(id){
+    const d = document.getElementById(id);
+    if (!d) return;
+
+    // Форсим reveal для всего внутри модала (IntersectionObserver внутри dialog работает нестабильно)
+    d.querySelectorAll('.reveal, .reveal-d1, .reveal-d2, .reveal-d3, .reveal-d4, .reveal-d5').forEach(el => {
+      el.classList.add('is-visible');
+    });
+
+    if (typeof d.showModal === 'function') {
+      try { d.showModal(); } catch(e) { d.setAttribute('open',''); }
+    } else {
+      d.setAttribute('open','');
+    }
+
+    document.body.classList.add('modal-open');
+
+    // После layout: разбудить анимации/виджеты
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      try {
+        if (id === 'modal-losses' && typeof window.__v4AnimateLossBars === 'function') {
+          window.__v4AnimateLossBars();
+        }
+        if (id === 'modal-mixer') {
+          // Перерисовать SVG (path должен существовать для getTotalLength)
+          if (typeof renderChart === 'function') renderChart();
+          if (typeof window.__v4AnimateMixerLine === 'function') window.__v4AnimateMixerLine();
+        }
+        if (id === 'modal-calc' && typeof updateCalc === 'function') {
+          updateCalc();
+        }
+        // Разбудить IntersectionObserver'ы, которые живут внутри модала (gantt, SOV-слои) —
+        // Observer сам заметит изменение visibility при dialog.showModal(), но для надёжности
+        // дёргаем resize, чтобы компоненты пересчитали layout-зависимости.
+        window.dispatchEvent(new Event('resize'));
+      } catch (err) {
+        console.warn('[v4 modal reinit]', id, err);
+      }
+    }));
+  }
+
+  function closeModal(d){
+    if (!d) return;
+    if (typeof d.close === 'function') {
+      try { d.close(); } catch(e) { d.removeAttribute('open'); }
+    } else {
+      d.removeAttribute('open');
+    }
+    if (!document.querySelector('dialog.modal[open]')) {
+      document.body.classList.remove('modal-open');
+    }
+  }
+
+  // Capture-phase делегирование — чтобы опередить внутренние click-handlers секций
+  document.addEventListener('click', function(e){
+    const trigger = e.target.closest('[data-open]');
+    if (trigger) {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(trigger.getAttribute('data-open'));
+      return;
+    }
+    const closer = e.target.closest('[data-close]');
+    if (closer) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal(closer.closest('dialog.modal'));
+      return;
+    }
+  }, true);
+
+  // Клик по <dialog> (не по детям) = клик по backdrop → закрыть
+  document.addEventListener('click', function(e){
+    if (e.target && e.target.tagName === 'DIALOG' && e.target.classList.contains('modal')) {
+      closeModal(e.target);
+    }
+  });
+
+  // Native <dialog> сам обрабатывает Esc, подстраховываемся по событию close
+  document.addEventListener('close', function(e){
+    if (e.target && e.target.matches && e.target.matches('dialog.modal')) {
+      if (!document.querySelector('dialog.modal[open]')) {
+        document.body.classList.remove('modal-open');
+      }
+    }
+  }, true);
+})();

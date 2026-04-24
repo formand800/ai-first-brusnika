@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#000000" />
-<title>AI-First маркетинг Брусники · концепция</title>
-<meta name="description" content="AI-маркетинговая система для Брусники. Потери 370–470 млн → NET +239…+672 млн за 3 года. MOIC 6,9×. Пилот 6 мес, 10–14 млн ₽.">
+<title>Концепция AI-маркетинга для коммерческого блока Брусники</title>
+<meta name="description" content="Брусника теряет 412 млн ₽ на маркетинге за 3 года. Можно вернуть за 12 месяцев. Пилот — 6 месяцев, 10–14 млн ₽. Разбор, экономика и план внедрения.">
 
 <!-- Fonts: preconnect first, then async load via preload trick -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
 <!-- GSAP только для SVG path-анимации чарта. ScrollTrigger и Lenis убраны ради производительности. -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 </head>
-<body>
+<body class="v4">
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -40,7 +40,7 @@
   </div>
   <div class="nav-links">
     <a href="#losses">Потери</a>
-    <a href="#mixer">A/B</a>
+    <a href="#mixer">Сценарии</a>
     <a href="#system">Система</a>
     <a href="#day">День КД</a>
     <a href="#econ">Экономика</a>
@@ -60,9 +60,9 @@
   </div>
   <nav class="mm-links">
     <a href="#losses"><span class="mm-num">01</span><span>Потери</span></a>
-    <a href="#mixer"><span class="mm-num">02</span><span>A/B · сценарии</span></a>
+    <a href="#mixer"><span class="mm-num">02</span><span>Два сценария</span></a>
     <a href="#system"><span class="mm-num">03</span><span>Система</span></a>
-    <a href="#agents"><span class="mm-num">04</span><span>AI-агенты</span></a>
+    <a href="#agents"><span class="mm-num">04</span><span>Агенты</span></a>
     <a href="#day"><span class="mm-num">05</span><span>День КД</span></a>
     <a href="#econ"><span class="mm-num">06</span><span>Экономика</span></a>
     <a href="#pilot"><span class="mm-num">07</span><span>Пилот</span></a>
@@ -73,49 +73,49 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="glow glow-orange glow-1"></div>
-  <div class="glow glow-purple glow-2"></div>
   <div class="wrap hero-inner">
     <div class="hero-eyebrow">
       <span class="pulse"></span>
-      <span>Концепция AI-маркетинга для коммерческого блока Брусники</span>
+      <span>Концепция AI-маркетинга для&nbsp;коммерческого блока Брусники</span>
     </div>
     <h1 class="display hero-title">
       <span class="line">Брусника теряет</span>
-      <span class="line grad-loss">370–470&nbsp;млн&nbsp;₽</span>
-      <span class="line">на&nbsp;маркетинге за&nbsp;3&nbsp;года.</span>
+      <span class="line"><span class="grad-loss">412&nbsp;млн&nbsp;₽</span></span>
+      <span class="line">на маркетинге за 3&nbsp;года.</span>
       <span class="line">Можно вернуть за&nbsp;<span class="grad-gain">12&nbsp;месяцев</span>.</span>
     </h1>
 
     <p class="lead hero-lead">
-      <b>Что внедряем:</b> операционную AI-среду для коммерческого блока&nbsp;— контент-завод,
-      автоматизация медиабаинга, интерфейс&nbsp;КД в&nbsp;Telegram и&nbsp;27&nbsp;AI-агентов
-      внутри процессов. Всё&nbsp;— на&nbsp;российской инфраструктуре, PII в&nbsp;РФ-контуре.
+      Пока одни за&nbsp;месяц готовят одну кампанию&nbsp;— другие за&nbsp;час тестируют три. Пока аналитики сводят отчёт к&nbsp;среде&nbsp;—
+      ставка ЦБ уже изменилась в&nbsp;пятницу. <b>Скорость решения теперь стоит дороже, чем&nbsp;бюджет.</b>
+      Именно здесь Брусника теряет сотни миллионов в&nbsp;год&nbsp;— не&nbsp;на&nbsp;рынке, а&nbsp;внутри.
     </p>
 
     <p class="lead hero-lead-2">
-      Инвестиции <b>114&nbsp;млн&nbsp;₽</b> за&nbsp;3&nbsp;года. Возврат&nbsp;— до&nbsp;<b>+672&nbsp;млн&nbsp;₽</b> NET.
-      Пилот&nbsp;— 6&nbsp;месяцев на&nbsp;всех ЖК Брусники, 10–14&nbsp;млн&nbsp;₽.
+      Я&nbsp;предлагаю собрать другой контур и&nbsp;принцип организации маркетинга. Рядом с&nbsp;командой работают AI-агенты: делают черновики, сверяют цифры, ловят отклонения, считают прогнозы.
+      Люди&nbsp;— принимают решения, а&nbsp;не&nbsp;сводят таблицы. Вход&nbsp;— <b>114&nbsp;млн&nbsp;₽ за&nbsp;3&nbsp;года</b> (0,1% годовой выручки).
+      Возврат&nbsp;— до&nbsp;<b>+672&nbsp;млн&nbsp;₽</b>. Первое решение&nbsp;— пилот на&nbsp;6&nbsp;месяцев, 10–14&nbsp;млн&nbsp;₽. Проверяем на&nbsp;фактах, не&nbsp;на&nbsp;слайдах.
     </p>
 
     <div class="hero-score">
       <div class="cell loss">
         <div class="lbl">Текущие потери</div>
-        <div class="val" id="heroLoss">−0</div>
-        <div class="sub">Диапазон 370–470 млн ₽ за 3 года. Точка планирования — 412. Четыре слоя, методология — в полной версии.</div>
+        <div class="val"><span id="heroLoss">−0</span></div>
+        <div class="sub">Диапазон 370–470&nbsp;млн&nbsp;₽ за&nbsp;3&nbsp;года. Точка планирования&nbsp;— 412. Четыре слоя, методология&nbsp;— в&nbsp;полной версии.</div>
       </div>
       <div class="divider"></div>
       <div class="cell gain">
-        <div class="lbl">NET за 3 года</div>
-        <div class="val">+239 … +672</div>
-        <div class="sub">Сценарий А (экономия) / Сценарий Б (рост). Одна инфраструктура, квартальный выбор режима.</div>
+        <div class="lbl">NET за&nbsp;3&nbsp;года</div>
+        <div class="val"><span class="v-a">+239</span><span class="v-sep" aria-hidden="true">…</span><span class="v-b">+672</span></div>
+        <div class="sub">Сценарий&nbsp;А (экономия)&nbsp;/ Сценарий&nbsp;Б (рост). Одна инфраструктура, квартальный выбор режима.</div>
       </div>
     </div>
 
     <div class="hero-micro">
-      <span>Пилот 10–14 млн ₽</span>
-      <span>Старт через 4–6 недель</span>
-      <span>Downside 4–5 млн ₽</span>
-      <span>Payback мес. 12–13</span>
+      <span>Пилот 10–14&nbsp;млн&nbsp;₽</span>
+      <span>Старт через 4–6&nbsp;недель</span>
+      <span>Downside 4–5&nbsp;млн&nbsp;₽</span>
+      <span>Payback мес.&nbsp;12–13</span>
       <span>MOIC 6,9×</span>
     </div>
   </div>
@@ -130,10 +130,11 @@
 
 <!-- CHAPTER I -->
 <section class="chapter wrap">
-  <div class="num-tag">Акт&nbsp;I · Цена</div>
+  <div class="num-tag">Акт&nbsp;I · Куда утекают деньги</div>
   <h2 class="h1 reveal">
-    Это не «может быть».<br>
-    Это уже <span class="grad-loss">идёт</span>.
+    Это не «может случиться».<br>
+    Это <span class="grad-loss">уже происходит</span>.<br>
+    Каждый день.
   </h2>
 </section>
 
@@ -142,39 +143,28 @@
   <div class="wrap losses-pin">
     <div class="losses-grid">
       <div class="losses-copy">
-        <div class="eyebrow" style="margin-bottom:28px">Четыре слоя потерь</div>
-        <div class="pct-big" id="lossPct">0%</div>
-        <div class="pct-label mono" id="lossPctLabel">Прогресс декомпозиции</div>
-        <h3 class="h3">370–470 млн за 3 года. Четыре слоя — каждый верифицируется без внутреннего аудита.</h3>
-        <p>Медиаинфляция съедает больше половины. Управленческий туман — ещё четверть. Ручные операции и регуляторика — видимый минимум. Нижняя граница — подтверждаемая. Верхняя — консервативная с учётом корреляций.</p>
+        <div class="eyebrow" style="margin-bottom:28px">Четыре источника потерь</div>
+        <div class="pct-big" id="lossPct">0</div>
+        <div class="pct-sup mono">
+          млн&nbsp;₽ за&nbsp;3&nbsp;года<sup class="pct-footmark" data-open="modal-losses" role="button" tabindex="0" aria-label="Как считали">1</sup>
+        </div>
+        <div class="pct-footnote mono" id="lossPctLabel">Диапазон потерь — 370–470&nbsp;млн&nbsp;₽. В&nbsp;план берём точку 412.</div>
+        <h3 class="h3">Это не&nbsp;одна большая дыра&nbsp;— это четыре маленьких. Каждую видно отдельно. Каждую можно заткнуть отдельно.</h3>
+        <p>Больше половины забирает рост цен на&nbsp;рекламу&nbsp;— его никто не&nbsp;компенсирует. Четверть&nbsp;— решения, которые принимают по&nbsp;вчерашним данным. Остальное&nbsp;— ручная работа и&nbsp;штрафы за&nbsp;маркировку. Нижняя граница&nbsp;— то, что видно невооружённым глазом уже сегодня. Верхняя&nbsp;— консервативная оценка сверху. Как получилась точка&nbsp;412&nbsp;— в&nbsp;разборе по&nbsp;слоям ниже.</p>
       </div>
 
-      <div class="losses-chart" id="lossesChart">
-        <div class="loss-row" data-layer="media">
-          <div class="name">Медиаинфляция<small>не компенсируется без AI-оптимизации медиабаинга</small></div>
-          <div class="bar"><div class="bar-fill" data-w="92"></div></div>
-          <div class="val">260–311<small>млн ₽</small></div>
-        </div>
-        <div class="loss-row" data-layer="fog">
-          <div class="name">Управленческий туман<small>данные с лагом 4–24 часа, реаллокация после потерь</small></div>
-          <div class="bar"><div class="bar-fill" data-w="33"></div></div>
-          <div class="val">83–111<small>млн ₽</small></div>
-        </div>
-        <div class="loss-row" data-layer="ops">
-          <div class="name">Ручные операции<small>отчётность, согласования, запуск, обновление цен</small></div>
-          <div class="bar"><div class="bar-fill" data-w="10"></div></div>
-          <div class="val">18–31<small>млн ₽</small></div>
-        </div>
-        <div class="loss-row" data-layer="reg">
-          <div class="name">Регуляторные ошибки<small>ЕРИР, ФАС, UTM, дубли лидов</small></div>
-          <div class="bar"><div class="bar-fill" data-w="6"></div></div>
-          <div class="val">9–18<small>млн ₽</small></div>
-        </div>
-
-        <div class="losses-foot">
-          <b>Нижняя граница — подтверждаемый минимум.</b> Верхняя — консервативная оценка с учётом корреляций. Точка планирования — <b>412 млн ₽</b> за 3 года (58 / 142 / 208 по годам). Полная методология с формулами и источниками — Приложение П1.
-        </div>
-      </div>
+      <div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">Как мы&nbsp;считали</div>
+    <h4 class="teaser-title">Четыре слоя. Четыре независимых цифры.</h4>
+    <p class="teaser-desc">Реклама дорожает&nbsp;— 260–311. Данные отстают от&nbsp;решений&nbsp;— 83–111. Ручная рутина&nbsp;— 18–31. Штрафы&nbsp;— 9–18&nbsp;млн&nbsp;₽. Откройте&nbsp;— увидите источники, формулы и&nbsp;допущения по&nbsp;каждому.</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>4</b><span>слоя потерь</span></div><div class="teaser-stat"><b>370–470</b><span>млн&nbsp;₽ · 3&nbsp;года</span></div><div class="teaser-stat"><b>412</b><span>берём в&nbsp;план</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-losses">
+    <span class="teaser-btn-lbl">Разобрать четыре слоя</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
     </div>
   </div>
 </section>
@@ -184,99 +174,68 @@
   <div class="glow glow-purple"></div>
   <div class="wrap">
     <div class="sect-head reveal">
-      <div class="eyebrow">Выбор, которого не делает никто на рынке</div>
+      <div class="eyebrow">Того, чего не&nbsp;даёт рынок</div>
       <h2 class="h2" style="margin-top:20px">
-        Одна инфраструктура.<br>
-        Два режима использования.<br>
-        <span class="grad-gain">Квартальный выбор.</span>
+        Одна система.<br>
+        Два&nbsp;рычага.<br>
+        <span class="grad-gain">Решаете каждый квартал.</span>
       </h2>
       <p class="lead">
-        AI-подрядчики продают либо «экономию», либо «рост» — выбирать до контракта. Здесь&nbsp;— опциональность:
-        <b style="color:#fff">переключение между режимами раз в квартал без пересборки</b>.
+        Обычно на&nbsp;входе есть выбор: <b style="color:#fff">сэкономить или вырасти</b>. Я&nbsp;предлагаю третий путь&nbsp;— <b style="color:#fff">гибридную управляемую логику возврата инвестиций</b>. Не&nbsp;развилка, а&nbsp;рычаг: его можно перевести в&nbsp;любом квартале, без переделки и&nbsp;без новых подрядчиков. Решение на&nbsp;следующие три месяца принимается глядя на&nbsp;рынок, а&nbsp;не&nbsp;на&nbsp;контракт.
       </p>
     </div>
 
     <div class="mixer-scoreboard reveal">
       <div class="mixer-side a">
-        <div class="tag">Сценарий А</div>
-        <div class="name">Экономия</div>
+        <div class="tag">Стратегия А</div>
+        <div class="name">Экономим</div>
         <div class="big">+239<small>&nbsp;млн&nbsp;₽</small></div>
-        <div class="meta">NET за 3 года · Payback 12–13 мес</div>
-        <div class="desc">Освободившийся ресурс (часы, CPL-рубль, FOT-ненайм) остаётся в P&L как <b>снижение затрат</b>. Защита минимума. Консервативный сценарий для первого года.</div>
+        <div class="meta">за&nbsp;3&nbsp;года · окупаемость 14–16&nbsp;месяцев</div>
+        <div class="desc">Освободившиеся часы, сэкономленный бюджет на&nbsp;лидах, найм, который больше не&nbsp;нужен&nbsp;— всё <b>остаётся в&nbsp;P&amp;L</b>. Консервативный сценарий. Защищает маржу, если рынок просядет.</div>
       </div>
       <div class="mixer-side b">
-        <div class="tag">Сценарий Б</div>
-        <div class="name">Рост выручки</div>
+        <div class="tag">Стратегия Б</div>
+        <div class="name">Растём быстрее рынка</div>
         <div class="big">+672<small>&nbsp;млн&nbsp;₽</small></div>
-        <div class="meta">NET за 3 года · MOIC 6,9× · Доп. выручка ~1,3 млрд</div>
-        <div class="desc">Тот же ресурс <b>реинвестируется в охват, скорость и качество</b>. Через валовую маржу 40%. Год 1 около нуля, основной эффект в год 2–3.</div>
+        <div class="meta">за&nbsp;3&nbsp;года · ROI 5,9× · окупаемость 12–13&nbsp;мес · доп.&nbsp;выручка ~1,3&nbsp;млрд</div>
+        <div class="desc">Тот&nbsp;же&nbsp;ресурс идёт не&nbsp;в&nbsp;экономию, а&nbsp;<b>в&nbsp;охват, скорость и&nbsp;конверсию</b>. Через маржу&nbsp;40%. Первый год&nbsp;— разгон. Главный эффект&nbsp;— на&nbsp;второй и&nbsp;третий.</div>
       </div>
     </div>
 
-    <div class="mixer-tool reveal">
-      <div class="mixer-tool-head">
-        <div>
-          <div class="ttl">Смикшируйте стратегию</div>
-          <div class="sub">Кликайте на квартал, чтобы переключить режим. NET пересчитывается.</div>
-        </div>
-        <div class="net">
-          <div class="lbl">NET · 3 года</div>
-          <div class="val" id="mixerNet">+663 млн ₽</div>
-        </div>
-      </div>
-
-      <div class="mixer-grid" id="mixerGrid"></div>
-
-      <div class="mixer-legend">
-        <span><span class="dot dot-a"></span>А — Экономия в P&L</span>
-        <span><span class="dot dot-b"></span>Б — Реинвест в рост</span>
-        <span class="muted">Пилот (Q1–Q2) · Gate&nbsp;3 (конец Q2) · Фаза 2–3 (Q3–Q12)</span>
-      </div>
-
-      <div class="mixer-chart">
-        <div class="mixer-chart-head">
-          <span>Кумулятивный NET · по кварталам · млн ₽</span>
-          <span id="chartEnd">+663 на Q12</span>
-        </div>
-        <svg id="mixerChart" viewBox="0 0 900 220" preserveAspectRatio="none"></svg>
-      </div>
-
-      <div class="mixer-strategies">
-        <button class="strat-chip active" data-strategy="smart">Рекомендация</button>
-        <button class="strat-chip" data-strategy="all-a">Только экономия</button>
-        <button class="strat-chip" data-strategy="all-b">Только рост</button>
-        <button class="strat-chip" data-strategy="half">50 / 50</button>
-      </div>
-
-      <div class="mixer-note">
-        <b>Рекомендация по умолчанию:</b> А в Q1–Q2 (весь пилот) — доказываем возврат на фактах; Б с Q3 после Gate&nbsp;3 — освободившийся ресурс переводится в рост. Это честная P&L-логика: план по прибыли не ухудшается, эффект накапливается.
-      </div>
-    </div>
+    <div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">Покрутите сами</div>
+    <h4 class="teaser-title">12&nbsp;кварталов. Переключайте режим в&nbsp;любом.</h4>
+    <p class="teaser-desc">Нажмите на&nbsp;квартал&nbsp;— система пересчитает трёхлетний итог. Видно: «экономим сейчас, растём потом» выигрывает у&nbsp;«всё время экономим» и&nbsp;у&nbsp;«всё время растём». Система подсказывает лучший путь.</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>А · +239</b><span>млн&nbsp;₽ · экономия</span></div><div class="teaser-stat"><b>Б · +672</b><span>млн&nbsp;₽ · рост</span></div><div class="teaser-stat"><b>5,9&times;</b><span>ROI за&nbsp;3&nbsp;года</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-mixer">
+    <span class="teaser-btn-lbl">Открыть калькулятор стратегии</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
   </div>
 </section>
 
 <!-- CHAPTER II -->
 <section class="chapter wrap">
-  <div class="num-tag">Акт&nbsp;II · Что встраивается</div>
+  <div class="num-tag">Акт&nbsp;II · Как это устроено</div>
   <h2 class="h1 reveal">
-    Не инструмент.<br>
-    Не CRM-модуль.<br>
-    <span class="grad-text">Операционная среда</span> коммерческой функции.
+    Не&nbsp;сервис.<br>
+    Не&nbsp;ещё один модуль поверх&nbsp;CRM.<br>
+    <span class="grad-text">Новая рабочая среда</span> коммерческого блока.
   </h2>
   <div class="chapter-intro reveal">
     <p>
-      AI-маркетинговая система&nbsp;— это не точечный продукт. Это четыре связанных блока,
-      которые встают между данными Брусники и&nbsp;ежедневными решениями коммерческого блока:
-      производят контент промышленным темпом, управляют медиабаингом без ручного вмешательства,
-      дают&nbsp;КД одно окно в&nbsp;Telegram и&nbsp;ставят AI-агентов внутрь ключевых процессов
-      (аномалии, ЕРИР-маркировка, оркестрация кампаний).
+      Если упростить&nbsp;— это четыре связанных блока между данными Брусники и&nbsp;ежедневной работой команды.
+      <b style="color:#fff">Первый</b> выпускает контент на&nbsp;все&nbsp;ЖК. <b style="color:#fff">Второй</b> ведёт рекламу без ручных кликов.
+      <b style="color:#fff">Третий</b> даёт коммерческому директору одно окно в&nbsp;Telegram вместо двадцати вкладок.
+      <b style="color:#fff">Четвёртый</b>&nbsp;— ставит AI-агентов прямо в&nbsp;процессы, где&nbsp;раньше сидели люди с&nbsp;таблицами.
     </p>
     <p>
-      <b style="color:#fff">Про данные.</b> Корпоративное хранилище данных (DWH) Брусника строит
-      отдельным проектом&nbsp;— со&nbsp;своими сроками и&nbsp;бюджетом. AI-система интегрируется
-      с&nbsp;ним по&nbsp;готовности. До&nbsp;этого момента&nbsp;— работаем на&nbsp;облегчённом
-      stage-слое: прямые подключения к&nbsp;CRM, 1С, рекламным кабинетам. Это не&nbsp;компромисс,
-      а&nbsp;правильная архитектура: AI-система и&nbsp;DWH развиваются независимо.
+      <b style="color:#fff">Про большие данные.</b> Корпоративное хранилище Брусника строит отдельным проектом&nbsp;— со&nbsp;своей дорожной картой.
+      Мы&nbsp;не&nbsp;ждём, когда оно будет готово: на&nbsp;пилоте подключаемся напрямую к&nbsp;CRM, 1С и&nbsp;рекламным
+      кабинетам. Когда хранилище появится&nbsp;— AI плавно к&nbsp;нему перейдёт. Два проекта идут параллельно и&nbsp;не&nbsp;блокируют друг друга.
     </p>
   </div>
 </section>
@@ -286,90 +245,80 @@
   <div class="sys-track" id="sysTrack">
     <div class="sys-card">
       <div class="top"><div class="n">Блок 01</div><div class="idx">01</div></div>
-      <h3>Контент-завод</h3>
-      <div class="desc">n8n + Supabase + Telegram. Три роли AI-моделей: ChatGPT для черновиков, Perplexity для данных, Claude для бренда. 20–30 карточек в неделю на все ЖК.</div>
-      <div class="kpi">Себестоимость −60–70% · выпуск 4–8 ч</div>
+      <h3>Фабрика контента</h3>
+      <div class="desc">AI пишет черновики, сверяет цифры с&nbsp;реальными остатками, подтягивает язык Брусники. Человек правит и&nbsp;утверждает. 20–30&nbsp;готовых единиц контента в&nbsp;неделю на&nbsp;все&nbsp;ЖК&nbsp;— вместо двух-трёх.</div>
+      <div class="kpi">Дешевле в&nbsp;3&nbsp;раза · выход за&nbsp;часы, не&nbsp;за&nbsp;дни</div>
     </div>
     <div class="sys-card">
       <div class="top"><div class="n">Блок 02</div><div class="idx">02</div></div>
-      <h3>Медиабаинг и ЕРИР</h3>
-      <div class="desc">AI-агенты в оркестраторе кампаний: запуск, A/B, бид-оптимизация, реаллокация в реал-тайм, автомаркировка ЕРИР, автогенерация креативов.</div>
-      <div class="kpi">Аномалии ловятся за 15 мин, не за месяц</div>
+      <h3>Реклама без ручных кликов</h3>
+      <div class="desc">Запуск кампаний, тесты креативов, перераспределение бюджета, маркировка ЕРИР&nbsp;— всё делает AI. Аномалии в&nbsp;ценах и&nbsp;воронке видны не&nbsp;в&nbsp;конце месяца, а&nbsp;через 15&nbsp;минут. Деньги перестают утекать молча.</div>
+      <div class="kpi">Реакция&nbsp;— 15&nbsp;минут вместо месяца</div>
     </div>
     <div class="sys-card">
       <div class="top"><div class="n">Блок 03</div><div class="idx">03</div></div>
-      <h3>Интерфейс КД</h3>
-      <div class="desc">Telegram-бот + утренний дайджест в 08:30 + голосовой Q&A по данным. Любой отчёт — 30–60 секунд. Моделирование решений — 1 минута с прогнозом.</div>
-      <div class="kpi">Time-to-decision: 2–4 ч → 40 сек</div>
+      <h3>Telegram вместо 20&nbsp;вкладок</h3>
+      <div class="desc">Утренний дайджест в&nbsp;8:30&nbsp;— что случилось за&nbsp;ночь, что требует решения. Любой отчёт&nbsp;— голосовым вопросом, ответ через минуту. «А&nbsp;что если снизим цену на&nbsp;2%?»&nbsp;— считает прямо в&nbsp;чате, с&nbsp;прогнозом маржи.</div>
+      <div class="kpi">Решение за&nbsp;минуту вместо полудня</div>
     </div>
     <div class="sys-card">
       <div class="top"><div class="n">Блок 04</div><div class="idx">04</div></div>
-      <h3>27 AI-агентов</h3>
-      <div class="desc">Шесть доменов: данные, медиа, контент, CRM, регуляторика, интерфейс КД. В пилоте работают 3 — AnomalyDetector, ERiRMarker, Campaigner. Остальные 24 — после Gate&nbsp;3.</div>
-      <div class="kpi">Human-in-the-loop на критике</div>
+      <h3>27 агентов внутри процессов</h3>
+      <div class="desc">Узкие AI-агенты. Каждый отвечает за&nbsp;свой кусок: один ловит аномалии в&nbsp;рекламе, другой маркирует креативы под закон, третий собирает кампанию целиком. В&nbsp;пилоте&nbsp;— трое. Остальные подключаем по&nbsp;очереди, когда первые пройдут проверку.</div>
+      <div class="kpi">Критические решения&nbsp;— всегда за&nbsp;человеком</div>
     </div>
     <div class="sys-card">
       <div class="top"><div class="n">Принцип</div><div class="idx">∑</div></div>
-      <h3>Не по кускам</h3>
-      <div class="desc">Контент-завод без медиабаинга не окупит себя. Интерфейс без агентов — игрушка. Система — или целиком, или никак. Это защищает Брусники от half-baked внедрений, которые съели 1,5–2 года у конкурентов.</div>
-      <div class="kpi">Архитектура — целостный контур</div>
+      <h3>Только целиком</h3>
+      <div class="desc">Контент без рекламы не&nbsp;окупается. Интерфейс без агентов&nbsp;— красивая игрушка. Четыре блока работают только вместе&nbsp;— поэтому и&nbsp;дают экономику. Рынок завален кейсами, где&nbsp;внедрили «кусочек» и&nbsp;потеряли 1,5–2&nbsp;года.</div>
+      <div class="kpi">Контур, а&nbsp;не&nbsp;набор фишек</div>
     </div>
   </div>
 
   <div class="wrap" style="margin-top:64px">
     <div class="sov-line reveal">
       <div class="sov-cell">
-        <div class="h">Инфра — российская</div>
-        <div class="d">VPS + Yandex Cloud. Без зависимости от AWS/GCP/Azure.</div>
+        <div class="h">Серверы&nbsp;— в&nbsp;России</div>
+        <div class="d">Российские серверы и&nbsp;Яндекс Облако. Санкции, отключения, блокировки&nbsp;— не&nbsp;наша история.</div>
       </div>
       <div class="sov-cell">
-        <div class="h">152-ФЗ</div>
-        <div class="d">PII — только в российском контуре. Юридический чек до старта.</div>
+        <div class="h">Данные клиентов&nbsp;— по&nbsp;закону</div>
+        <div class="d">Персональные данные не&nbsp;покидают российский контур. Юристы проверяют всё до&nbsp;запуска.</div>
       </div>
       <div class="sov-cell">
-        <div class="h">PII в LLM</div>
-        <div class="d">PIIGuard маскирует перед отправкой. Без обучения на данных.</div>
+        <div class="h">Ничего лишнего в&nbsp;AI</div>
+        <div class="d">Имена, телефоны и&nbsp;адреса закрываем до&nbsp;отправки. Наши данные не&nbsp;учат чужие модели.</div>
       </div>
       <div class="sov-cell">
-        <div class="h">Audit trail · 3 года</div>
-        <div class="d">RBAC, MFA, security-аудит ежеквартально, pentest раз в год.</div>
+        <div class="h">Прозрачность на&nbsp;3&nbsp;года</div>
+        <div class="d">Роли и&nbsp;доступы, двухфакторка, ежеквартальные аудиты, ежегодный внешний пентест.</div>
       </div>
     </div>
   </div>
 
   <div class="wrap" id="agents">
-    <div class="agents-block reveal">
-      <div class="agents-head">
-        <h4>27 AI-агентов · 6 доменов</h4>
-        <div class="agents-tabs" id="agentsTabs">
-          <button class="agents-tab active" data-domain="all">Все</button>
-          <button class="agents-tab" data-domain="data">Данные</button>
-          <button class="agents-tab" data-domain="media">Медиа</button>
-          <button class="agents-tab" data-domain="content">Контент</button>
-          <button class="agents-tab" data-domain="crm">CRM</button>
-          <button class="agents-tab" data-domain="sec">ИБ</button>
-          <button class="agents-tab" data-domain="cd">КД</button>
-        </div>
-      </div>
-      <div class="agents-grid" id="agentsGrid"></div>
-      <button class="agents-more" id="agentsMore" type="button" hidden>
-        <span class="lbl">Показать ещё</span>
-        <span class="cnt" id="agentsMoreCnt">17 агентов</span>
-      </button>
-      <div style="margin-top:20px;font-size:12px;color:var(--text-3);line-height:1.5">
-        В пилот включены 3 агента: <b style="color:#fff">AnomalyDetector · ERiRMarker · Campaigner</b>. Остальные подключаются после Gate&nbsp;3. Каждый агент — узко-специализированный пайплайн с входами, выходами и метрикой качества. Критические решения — human-in-the-loop.
-      </div>
-    </div>
+<div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">Кто сидит внутри системы</div>
+    <h4 class="teaser-title">27&nbsp;узких AI-агентов. Каждый&nbsp;— со&nbsp;своей ответственностью.</h4>
+    <p class="teaser-desc">Данные. Реклама. Контент. Клиенты. Безопасность. Интерфейс&nbsp;КД. К&nbsp;контрольной точке (конец месяца&nbsp;6) в&nbsp;реальных кампаниях работают трое&nbsp;— те, что быстрее всего возвращают вложенное. Остальные&nbsp;— по&nbsp;очереди, после проверки первых.</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>27</b><span>агентов</span></div><div class="teaser-stat"><b>6</b><span>направлений</span></div><div class="teaser-stat"><b>3</b><span>к&nbsp;мес.&nbsp;6</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-agents">
+    <span class="teaser-btn-lbl">Посмотреть, что&nbsp;делает каждый</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
   </div>
 </section>
 
 <!-- CHAPTER III -->
 <section class="chapter wrap">
-  <div class="num-tag">Акт&nbsp;III · Ваш день</div>
+  <div class="num-tag">Акт&nbsp;III · Один день через полгода</div>
   <h2 class="h1 reveal">
-    Через полгода<br>
-    после запуска — <span class="grad-text">другая</span><br>
-    скорость решений.
+    Через шесть месяцев<br>
+    обычный день коммерческого директора<br>
+    <span class="grad-text">выглядит иначе</span>.
   </h2>
 </section>
 
@@ -379,164 +328,63 @@
   <div class="wrap">
     <div class="sect-head reveal" style="max-width:780px">
       <p class="lead">
-        Шесть типовых ситуаций, где система меняет темп и качество решений. Без системы&nbsp;— 1–5 дней аналитической работы. С&nbsp;системой&nbsp;— минуты с прогнозом и обоснованием.
+        Шесть моментов из&nbsp;обычного дня. Сегодня каждый съедает часы или дни&nbsp;— и&nbsp;часть решений
+        принимается уже поздно. Через полгода на&nbsp;эти&nbsp;же шесть моментов уходят минуты. С&nbsp;прогнозом и&nbsp;обоснованием.
       </p>
     </div>
 
     <div class="day-scenes">
       <div class="scene reveal">
         <div class="time">07:30</div>
-        <div class="title">Утренний дайджест</div>
-        <div class="row"><div class="lbl">Сейчас</div><div class="tx">3–5 отчётов, 20–40 мин на чтение. Что требует решения — вычислять самому.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx">Одна сводка в Telegram, <b style="color:#fff">40 секунд</b>. Что система отработала ночью и что требует решения утром&nbsp;— явно, без раскопок в отчётах.</div></div>
+        <div class="title">Утро</div>
+        <div class="row"><div class="lbl">Сегодня</div><div class="tx">3–5&nbsp;отчётов, 20–40&nbsp;минут на&nbsp;чтение. Что требует реакции&nbsp;— вычисляете сами.</div></div>
+        <div class="row after"><div class="lbl">Через полгода</div><div class="tx">Одно сообщение в&nbsp;Telegram, <b style="color:#fff">40&nbsp;секунд</b>. Что система отработала ночью сама. Что требует вашего решения утром. Всё сверху, без копания в&nbsp;таблицах.</div></div>
       </div>
       <div class="scene reveal reveal-d1">
         <div class="time">10:15</div>
-        <div class="title">Срочное совещание с CEO</div>
-        <div class="row"><div class="lbl">Сейчас</div><div class="tx">Запрос к аналитикам → 2–4 часа. Ответ в 3–5 Excel-таблицах, противоречиво.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx">Голосовой промпт → <b style="color:#fff">30–60 сек</b>. Полная картина + прогноз.</div></div>
+        <div class="title">Срочный вопрос от&nbsp;CEO</div>
+        <div class="row"><div class="lbl">Сегодня</div><div class="tx">Запрос аналитикам&nbsp;— 2–4&nbsp;часа. Ответ в&nbsp;3–5&nbsp;таблицах, цифры не&nbsp;сходятся.</div></div>
+        <div class="row after"><div class="lbl">Через полгода</div><div class="tx">Спрашиваете голосом в&nbsp;Telegram. <b style="color:#fff">30–60&nbsp;секунд</b>&nbsp;— полная картина и&nbsp;прогноз.</div></div>
       </div>
       <div class="scene reveal reveal-d2">
         <div class="time">12:30</div>
-        <div class="title">Защита плана в просадочный квартал</div>
-        <div class="row"><div class="lbl">Сейчас</div><div class="tx">1–2 недели аналитики. Один вариант — «режем цену». Без прогноза маржи.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx"><b style="color:#fff">2–3 минуты</b>. 3 варианта: цена / каналы / оффер. Прогноз маржи по всем ЖК.</div></div>
+        <div class="title">Защита плана на&nbsp;слабый квартал</div>
+        <div class="row"><div class="lbl">Сегодня</div><div class="tx">1–2&nbsp;недели аналитики. Единственный вариант&nbsp;— срезать цену. Что станет с&nbsp;маржой&nbsp;— неизвестно.</div></div>
+        <div class="row after"><div class="lbl">Через полгода</div><div class="tx"><b style="color:#fff">2–3&nbsp;минуты</b>. Три варианта: цена / каналы / оффер. По&nbsp;каждому прогноз маржи по&nbsp;каждому&nbsp;ЖК.</div></div>
       </div>
       <div class="scene reveal reveal-d3">
         <div class="time">14:00</div>
-        <div class="title">Ночной конкурент</div>
-        <div class="row"><div class="lbl">Сейчас</div><div class="tx">Новая цена обнаруживается через 2–7 дней. Ответ — симметричная скидка.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx">Дайджест <b style="color:#fff">следующего дня</b> + 3 варианта с прогнозом маржи.</div></div>
+        <div class="title">Конкурент снизил цену ночью</div>
+        <div class="row"><div class="lbl">Сегодня</div><div class="tx">Узнаёте через 2–7&nbsp;дней. Реакция по&nbsp;шаблону&nbsp;— такая&nbsp;же скидка. Маржа уходит вслед за&nbsp;ценой.</div></div>
+        <div class="row after"><div class="lbl">Через полгода</div><div class="tx">Узнаёте <b style="color:#fff">на&nbsp;следующий день</b>. На&nbsp;столе&nbsp;— три осмысленных ответа с&nbsp;прогнозом маржи. Не&nbsp;надо симметрично резать цену.</div></div>
       </div>
       <div class="scene reveal reveal-d4">
         <div class="time">16:00</div>
-        <div class="title">Решение ЦБ по ключевой ставке</div>
-        <div class="row"><div class="lbl">Сейчас</div><div class="tx">3–5 рабочих дней на пересчёт доступности продукта по ЖК. Топ-3 — сразу, остальные — по остаточному принципу.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx"><b style="color:#fff">10 минут</b> на весь портфель. Симуляция: ставка → отток → маржа оффера.</div></div>
+        <div class="title">ЦБ меняет ключевую ставку</div>
+        <div class="row"><div class="lbl">Сегодня</div><div class="tx">3–5&nbsp;рабочих дней на&nbsp;пересчёт ипотеки по&nbsp;каждому&nbsp;ЖК. Пересчитывают только топ-3.</div></div>
+        <div class="row after"><div class="lbl">Через полгода</div><div class="tx"><b style="color:#fff">10&nbsp;минут</b> на&nbsp;весь портфель. Видно, как ставка повлияет на&nbsp;спрос и&nbsp;маржу по&nbsp;каждому проекту.</div></div>
       </div>
       <div class="scene reveal reveal-d5">
         <div class="time">18:30</div>
-        <div class="title">Ценовое решение по ЖК</div>
-        <div class="row"><div class="lbl">Сейчас</div><div class="tx">Финмодель по ЖК → 2–3 дня. Один сценарий. Каннибализация — вручную.</div></div>
-        <div class="row after"><div class="lbl">С системой</div><div class="tx"><b style="color:#fff">1 минута</b>. 3 альтернативы, каннибализация автоматически.</div></div>
+        <div class="title">Цена по&nbsp;конкретному&nbsp;ЖК</div>
+        <div class="row"><div class="lbl">Сегодня</div><div class="tx">Финмодель&nbsp;— 2–3&nbsp;дня. Один вариант. Как этот&nbsp;ЖК заденет соседние&nbsp;— считают в&nbsp;Excel.</div></div>
+        <div class="row after"><div class="lbl">Через полгода</div><div class="tx"><b style="color:#fff">Минута</b>. Три варианта. Влияние на&nbsp;соседние проекты&nbsp;— автоматически.</div></div>
       </div>
     </div>
 
     <!-- FLOW — наглядная схема вместо экранчика телефона -->
-    <div class="flow-block reveal">
-      <div class="flow-head">
-        <div class="eyebrow" style="margin-bottom:14px">Реальный сценарий</div>
-        <h3>Пример запуска рекламной кампании <span class="a">за 1 час</span>.</h3>
-        <p class="lead" style="margin-top:18px;max-width:760px">
-          Одна голосовая команда. 10&nbsp;AI-агентов, которые работают как слаженная команда: декомпозируют задачу,
-          передают результат друг другу, перекрёстно проверяют ошибки и возвращают&nbsp;КД одну кнопку «Запустить».
-          Ниже&nbsp;— шаги с&nbsp;реальными таймингами, что делает каждый агент и&nbsp;почему это работает.
-        </p>
-      </div>
-
-      <div class="flow-steps">
-
-        <div class="flow-step">
-          <div class="flow-time">11:00</div>
-          <div class="flow-icon">01</div>
-          <div class="flow-title">Голосовая команда в&nbsp;Telegram</div>
-          <div class="flow-desc">
-            КД диктует голосом: «Запусти кампанию на&nbsp;ЖК&nbsp;“Речной”, фокус&nbsp;— молодые пары, бюджет в&nbsp;рынок, запуск завтра утром».
-            Одно предложение, 20&nbsp;секунд. Дальше КД возвращается к&nbsp;другим задачам&nbsp;— остальное делает система.
-          </div>
-          <div class="flow-actor">КД · 20&nbsp;сек</div>
-        </div>
-
-        <div class="flow-arrow" aria-hidden="true"></div>
-
-        <div class="flow-step">
-          <div class="flow-time">11:00:30</div>
-          <div class="flow-icon">02</div>
-          <div class="flow-title">Декомпозиция задачи и&nbsp;бюджет</div>
-          <div class="flow-desc">
-            <b>Campaigner</b> разбирает реплику на&nbsp;интенты, достаёт из&nbsp;RAG портрет ЖК «Речной»
-            (цены, остатки, конкурентное окружение, историю успешных креативов по&nbsp;сегменту).
-            Сверяется с&nbsp;календарём активных кампаний, чтобы не&nbsp;было каннибализации.
-            <b>Budget Allocator</b> считает конкурентный CPL по&nbsp;каналам, предлагает
-            распределение <b>2,4&nbsp;млн&nbsp;₽</b>: VK&nbsp;40% · МТ&nbsp;25% · Telegram Ads&nbsp;20% · контекст&nbsp;15%.
-          </div>
-          <div class="flow-actor">2 агента · 4&nbsp;мин</div>
-        </div>
-
-        <div class="flow-arrow" aria-hidden="true"></div>
-
-        <div class="flow-step parallel">
-          <div class="flow-time">11:05–11:30</div>
-          <div class="flow-icon">03</div>
-          <div class="flow-title">Производственный конвейер&nbsp;— параллельно</div>
-          <div class="flow-desc">
-            <div class="flow-sub"><b>DraftWriter</b> генерирует 8&nbsp;гипотез заголовков под 3&nbsp;психотипа внутри сегмента «молодые пары»</div>
-            <div class="flow-sub"><b>BrandEditor</b> прогоняет каждую через брендбук Брусники, отсекает 5&nbsp;слабых, оставляет 3&nbsp;прошедших проверку</div>
-            <div class="flow-sub"><b>LandingGen</b> собирает посадочную из&nbsp;компонентной библиотеки, адаптирует CTA и&nbsp;настраивает UTM-разметку</div>
-            <div class="flow-sub"><b>ERiRMarker</b> присваивает токены, формирует пакет для&nbsp;Роскомнадзора&nbsp;— 2&nbsp;часа ручной работы вырезаются</div>
-          </div>
-          <div class="flow-actor">4 агента параллельно · 25&nbsp;мин</div>
-        </div>
-
-        <div class="flow-arrow" aria-hidden="true"></div>
-
-        <div class="flow-step">
-          <div class="flow-time">11:32</div>
-          <div class="flow-icon">04</div>
-          <div class="flow-title">Перекрёстная проверка&nbsp;— агенты читают агентов</div>
-          <div class="flow-desc">
-            <b>AnomalyDetector</b> сравнивает кампанию с&nbsp;текущими: пересечение ЦА, ценовая каннибализация, конфликты по&nbsp;каналам.
-            <b>PIIGuard</b> сканирует креативы на&nbsp;утечку персональных данных.
-            <b>CreativeReviewer</b> сверяет с&nbsp;топ‑5 креативами квартала по&nbsp;ЖК и&nbsp;выдаёт score&nbsp;0–100.
-            Если score&nbsp;&lt;&nbsp;60 или&nbsp;обнаружен конфликт&nbsp;— кампания возвращается на&nbsp;доработку, не&nbsp;дойдя до&nbsp;человека.
-          </div>
-          <div class="flow-actor">3 агента · 2&nbsp;мин</div>
-        </div>
-
-        <div class="flow-arrow" aria-hidden="true"></div>
-
-        <div class="flow-step">
-          <div class="flow-time">11:35</div>
-          <div class="flow-icon">05</div>
-          <div class="flow-title">Прогноз перед запуском + один тап</div>
-          <div class="flow-desc">
-            <b>Simulator</b> прогоняет модель: <b>127&nbsp;лидов</b> ожидаемо · <b>CPL&nbsp;18&nbsp;900&nbsp;₽</b> ·
-            CR&nbsp;2,1% · маржа +340&nbsp;тыс&nbsp;₽ сверх базы. Цены сверены с&nbsp;CRM&nbsp;— остатки подтверждены.
-            В&nbsp;Telegram приходит карточка: пять цифр, три заголовка, одна кнопка <b>«Запустить»</b>. Один тап КД.
-          </div>
-          <div class="flow-actor">Simulator + human-in-the-loop · 30&nbsp;сек</div>
-        </div>
-
-        <div class="flow-arrow" aria-hidden="true"></div>
-
-        <div class="flow-step last">
-          <div class="flow-time">12:00</div>
-          <div class="flow-icon">06</div>
-          <div class="flow-title">В эфире&nbsp;— и&nbsp;дальше автопилот</div>
-          <div class="flow-desc">
-            Кампания развёрнута во&nbsp;все рекламные кабинеты, ЕРИР-маркировка прошла автоматически.
-            Дальше&nbsp;— <b>AnomalyDetector</b> каждые 15&nbsp;минут: аномальный CPC&nbsp;— пересборка бюджета на&nbsp;лету,
-            креатив выгорел&nbsp;— запрос к&nbsp;DraftWriter на&nbsp;новую версию. Человек нужен только на&nbsp;стратегическом уровне.
-          </div>
-          <div class="flow-actor">End-to-end · 1&nbsp;час</div>
-        </div>
-
-      </div>
-
-      <div class="flow-compare">
-        <div class="flow-before">
-          <div class="lbl">БЫЛО</div>
-          <div class="val">1–1,5&nbsp;мес</div>
-          <div class="sub">5–8&nbsp;человек · 3–5&nbsp;итераций · ручная ЕРИР · несколько согласований</div>
-        </div>
-        <div class="flow-arrow-big">→</div>
-        <div class="flow-after">
-          <div class="lbl">СТАЛО</div>
-          <div class="val">1 час</div>
-          <div class="sub">Один процесс · 10&nbsp;AI-агентов в&nbsp;связке · один тап подтверждения</div>
-        </div>
-      </div>
-    </div>
+    <div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">История одной кампании</div>
+    <h4 class="teaser-title">От&nbsp;идеи до&nbsp;эфира&nbsp;&mdash; за&nbsp;час.</h4>
+    <p class="teaser-desc">Сегодня на&nbsp;это уходит 1–1,5&nbsp;месяца и&nbsp;5–8&nbsp;человек. В&nbsp;нашем сценарии КД голосом говорит одно предложение&nbsp;— дальше 10&nbsp;AI-агентов делают всё сами: считают бюджет, пишут креативы, сверяют с&nbsp;брендом и&nbsp;законом, прогнозируют результат. КД получает в&nbsp;Telegram карточку с&nbsp;пятью цифрами и&nbsp;кнопкой «Запустить».</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>1&nbsp;час</b><span>от&nbsp;идеи до&nbsp;эфира</span></div><div class="teaser-stat"><b>10</b><span>агентов в&nbsp;связке</span></div><div class="teaser-stat"><b>1&nbsp;тап</b><span>подтверждение</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-flow">
+    <span class="teaser-btn-lbl">Пройти сценарий по&nbsp;минутам</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
   </div>
 </section>
 
@@ -545,124 +393,71 @@
   <div class="glow glow-green"></div>
   <div class="wrap">
     <div class="sect-head reveal">
-      <div class="eyebrow">Акт&nbsp;IV · Математика</div>
+      <div class="eyebrow">Акт&nbsp;IV · Цифры</div>
       <h2 class="h2" style="margin-top:20px">
-        114 млн в.<br>
-        <span class="grad-green">+672 млн из.</span><br>
-        MOIC&nbsp;6,9×.
+        Вкладываем 114&nbsp;млн.<br>
+        <span class="grad-green">Возвращаем до&nbsp;672.</span><br>
+        ROI&nbsp;— 5,9×.
       </h2>
       <p class="lead">
-        0,10% годовой выручки Брусники (115,6 млрд&nbsp;₽ МСФО 2025) на вход. Возврат&nbsp;— в пределах первого года. Проверяется на любых разумных сочетаниях CPL и конверсии.
+        Вход&nbsp;— 0,1% годовой выручки Брусники (115,6&nbsp;млрд&nbsp;₽ за&nbsp;2025). Окупаемость при стратегии роста&nbsp;— 12–13&nbsp;месяцев; при консервативной экономии&nbsp;— 14–16. Модель остаётся в&nbsp;плюсе при любых реалистичных сочетаниях цены лида и&nbsp;конверсии. Ниже можно проверить рычагами.
       </p>
     </div>
 
     <div class="econ-hero">
       <div class="econ-kpi k1 reveal">
-        <div class="lbl">NET за 3 года</div>
+        <div class="lbl">Возврат за&nbsp;3&nbsp;года</div>
         <div class="val">+239 / +672<small>&nbsp;млн&nbsp;₽</small></div>
-        <div class="sub">Сценарий А (экономия) / Сценарий Б (рост). Выбор квартальный.</div>
+        <div class="sub">Две стратегии на&nbsp;одной системе. Экономим или&nbsp;растём&nbsp;— переключаем каждый квартал.</div>
       </div>
       <div class="econ-kpi k2 reveal reveal-d1">
-        <div class="lbl">Payback</div>
-        <div class="val">12–13<small>&nbsp;мес</small></div>
-        <div class="sub">Первое полугодие после пилота. Сценарий А — консервативный защитный расчёт.</div>
+        <div class="lbl">Окупаемость</div>
+        <div class="val">12–16<small>&nbsp;мес</small></div>
+        <div class="sub">Стратегия роста (Б)&nbsp;— 12–13&nbsp;мес. Консервативная экономия (А)&nbsp;— 14–16. Рычаг выбирается каждый квартал.</div>
       </div>
       <div class="econ-kpi k3 reveal reveal-d2">
-        <div class="lbl">Downside No-Go</div>
+        <div class="lbl">Если&nbsp;No-Go после пилота</div>
         <div class="val">4–5<small>&nbsp;млн&nbsp;₽</small></div>
-        <div class="sub">Чистые невозвратные потери если Stop после пилота. Остальное — активы.</div>
+        <div class="sub">Всё, что&nbsp;теряется безвозвратно. Меньше, чем&nbsp;один слабый квартал в&nbsp;маркетинге.</div>
       </div>
     </div>
 
     <div class="pnl reveal">
       <div class="pnl-head">
-        <h4>P&L по годам · инвестиции и NET в обоих сценариях</h4>
-        <div class="t">млн ₽ · точка планирования</div>
+        <h4>По&nbsp;годам: сколько вложили, сколько вернули</h4>
+        <div class="t">млн&nbsp;₽ · базовая точка плана</div>
       </div>
       <table class="pnl-table">
         <thead>
-          <tr><th>Показатель</th><th>Год&nbsp;1</th><th>Год&nbsp;2</th><th>Год&nbsp;3</th><th>3 года</th></tr>
+          <tr><th></th><th>Год&nbsp;1</th><th>Год&nbsp;2</th><th>Год&nbsp;3</th><th>3&nbsp;года</th></tr>
         </thead>
         <tbody>
-          <tr><td>Инвестиции (Capex + Opex + пилот)</td><td>34</td><td>36</td><td>44</td><td><b>114</b></td></tr>
-          <tr><td>Текущие потери без системы</td><td class="neg">50–70</td><td class="neg">130–165</td><td class="neg">190–235</td><td class="neg"><b>370–470</b></td></tr>
-          <tr><td>NET — Сценарий А (экономия)&nbsp;⇄</td><td>−4</td><td class="pos">+77</td><td class="pos">+166</td><td class="pos"><b>+239</b></td></tr>
-          <tr class="hl"><td>NET — Сценарий Б (рост)&nbsp;⇄</td><td>+14</td><td>+210</td><td>+448</td><td><b>+672</b></td></tr>
+          <tr class="pnl-sub"><td>· Пилот (мес&nbsp;1–6)</td><td>12</td><td>—</td><td>—</td><td>12</td></tr>
+          <tr class="pnl-sub"><td>· Сопровождение и&nbsp;развитие</td><td>22</td><td>36</td><td>44</td><td>102</td></tr>
+          <tr><td><b>Вложения, итого</b></td><td><b>34</b></td><td><b>36</b></td><td><b>44</b></td><td><b>114</b></td></tr>
+          <tr><td>Сколько потеряем, если&nbsp;ничего не&nbsp;менять</td><td class="neg">50–70</td><td class="neg">130–165</td><td class="neg">190–235</td><td class="neg"><b>370–470</b></td></tr>
+          <tr><td>Возврат&nbsp;— стратегия&nbsp;А (экономим)&nbsp;⇄</td><td>−4</td><td class="pos">+77</td><td class="pos">+166</td><td class="pos"><b>+239</b></td></tr>
+          <tr class="hl"><td>Возврат&nbsp;— стратегия&nbsp;Б (растём)&nbsp;⇄</td><td>+14</td><td>+210</td><td>+448</td><td><b>+672</b></td></tr>
         </tbody>
       </table>
       <div class="pnl-note">
-        DWH Брусники — внешний проект (собственная дорожная карта и бюджет), в эти 114&nbsp;млн&nbsp;₽ не входит. AI-система на пилоте работает на облегчённом stage-слое, переходит на DWH по его готовности.
+        Корпоративное хранилище данных Брусника строит своим проектом&nbsp;— его бюджет в&nbsp;эти 114&nbsp;млн&nbsp;₽ не&nbsp;входит.
+        AI-система на&nbsp;пилоте работает напрямую с&nbsp;CRM, 1С и&nbsp;рекламными кабинетами. Когда хранилище будет готово&nbsp;— плавно перейдёт на&nbsp;него.
       </div>
     </div>
 
-    <div class="calc reveal">
-      <div class="calc-head">
-        <h4>Калькулятор чувствительности</h4>
-        <div class="t">CPL × CR × Использование командой → NET Сценария Б</div>
-      </div>
-      <p class="calc-intro">
-        Поверните три рычага и посмотрите устойчивость модели. Базовый сценарий: CPL 15&nbsp;тыс ₽ × CR 2,0% × использование командой 65%. Во всех разумных комбинациях&nbsp;— NET положительный.
-      </p>
-
-      <!-- Мобильный sticky-бейдж: виден при перемещении ползунков -->
-      <div class="calc-sticky" aria-hidden="true">
-        <div class="cs-top">
-          <div class="cs-lbl">NET · 3 года</div>
-          <div class="cs-val"><span>+</span><span id="netNumMob">672</span> <span class="u">млн&nbsp;₽</span></div>
-        </div>
-        <div class="cs-meta"><span id="detCplMob">CPL 15 × CR 2,0% × 65%</span></div>
-        <div class="cs-kpis">
-          <span><em>ROI</em><b id="detRoiMob">5,9×</b></span>
-          <span><em>MOIC</em><b id="detMoicMob">6,9×</b></span>
-          <span><em>Payback</em><b id="detBeMob">мес. 12–13</b></span>
-        </div>
-      </div>
-
-      <div class="calc-grid">
-        <div class="sliders">
-          <div class="slider-block">
-            <div class="slider-head">
-              <div class="slider-label">CPL<small>стоимость лида на рынке</small></div>
-              <div class="slider-val"><span id="cplVal">15</span> <span>тыс ₽</span></div>
-            </div>
-            <input type="range" id="cplSlider" min="10" max="24" value="15" step="0.5">
-            <div class="slider-ticks"><span>10</span><span>15 (база)</span><span>20</span><span>24</span></div>
-          </div>
-          <div class="slider-block">
-            <div class="slider-head">
-              <div class="slider-label">Конверсия лид → сделка<small>CR через воронку</small></div>
-              <div class="slider-val"><span id="crVal">2.0</span> <span>%</span></div>
-            </div>
-            <input type="range" id="crSlider" min="1.2" max="3.0" value="2.0" step="0.1">
-            <div class="slider-ticks"><span>1,2%</span><span>2,0% (база)</span><span>2,5%</span><span>3,0%</span></div>
-          </div>
-          <div class="slider-block">
-            <div class="slider-head">
-              <div class="slider-label">Использование командой<small>сколько сотрудников реально пользуются</small></div>
-              <div class="slider-val"><span id="adoptVal">65</span> <span>%</span></div>
-            </div>
-            <input type="range" id="adoptSlider" min="30" max="90" value="65" step="5">
-            <div class="slider-ticks"><span>30%</span><span>65% (план)</span><span>90%</span></div>
-          </div>
-        </div>
-
-        <div class="calc-result">
-          <div class="lbl">NET Сценарий Б · 3 года</div>
-          <div class="net-big"><span class="c">+</span><span id="netNum">672</span> <span class="u">млн ₽</span></div>
-          <div class="details">
-            <div class="row"><span id="detCpl">CPL 15 × CR 2,0% × 65%</span><span>базовый</span></div>
-            <div class="row"><span>ROI</span><span id="detRoi">5,9×</span></div>
-            <div class="row"><span>MOIC</span><span id="detMoic">6,9×</span></div>
-            <div class="row"><span>Доп. выручка</span><span id="detRev">~1,3 млрд</span></div>
-            <div class="row"><span>Break-even</span><span id="detBe">месяц 12–13</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-note">
-        Модель интерполирует по сетке v13.2 (раздел 4). Нижняя граница безубыточности за 3 года&nbsp;— CPL &gt;30&nbsp;тыс при CR &lt;1,5% — реалистично только при системной деградации рынка. Использование командой &lt;40%&nbsp;— риск, митигируется интерфейсом в Telegram и тренингом.
-      </div>
-    </div>
+    <div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">Проверьте сами</div>
+    <h4 class="teaser-title">Подвиньте рычаги&nbsp;&mdash; увидите, насколько устойчива модель.</h4>
+    <p class="teaser-desc">Три параметра: цена лида, конверсия в&nbsp;сделку, как активно команда пользуется системой. База&nbsp;— лид 15&nbsp;тыс, конверсия&nbsp;2%, пользуются&nbsp;65%. Итог&nbsp;— +672&nbsp;млн&nbsp;₽. При любых реалистичных сочетаниях NET остаётся положительным.</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>+672</b><span>млн&nbsp;₽ · база</span></div><div class="teaser-stat"><b>5,9&times;</b><span>возврат</span></div><div class="teaser-stat"><b>12–13</b><span>мес окупаемости</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-calc">
+    <span class="teaser-btn-lbl">Проверить на&nbsp;своих цифрах</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
   </div>
 </section>
 
@@ -670,60 +465,59 @@
 <section class="pilot-wrap" id="pilot">
   <div class="wrap">
     <div class="sect-head reveal">
-      <div class="eyebrow">С чего начинаем</div>
+      <div class="eyebrow">С&nbsp;чего&nbsp;начинаем</div>
       <h2 class="h2" style="margin-top:20px">
-        <span class="grad-text">6 месяцев</span><br>
-        до решения на фактах.<br>
-        Не на ожиданиях.
+        <span class="grad-text">Полгода</span><br>
+        до&nbsp;решения,<br>
+        основанного на&nbsp;фактах.
       </h2>
       <p class="lead" style="margin-top:24px">
-        Пилот разворачивается на всех ЖК Брусники: базовый слой (данные, дайджест, ЕРИР)&nbsp;— с&nbsp;дня&nbsp;1; AI-агенты поочерёдно на 2–3&nbsp;reference-ЖК и&nbsp;к&nbsp;концу пилота работают на&nbsp;всех.
+        С&nbsp;первого дня запускаем основу: данные, утренний дайджест, автоматическую маркировку рекламы&nbsp;— сразу на&nbsp;все&nbsp;ЖК Брусники.
+        AI-агенты подключаются постепенно&nbsp;— сначала на&nbsp;2–3&nbsp;эталонных&nbsp;ЖК, потом на&nbsp;остальные. Через полгода у&nbsp;Брусники&nbsp;— факты, а&nbsp;не&nbsp;обещания.
       </p>
     </div>
 
     <div class="pilot-kpis reveal">
-      <div class="p-kpi k1"><div class="v">6<small>&nbsp;мес</small></div><div class="l">Длительность</div></div>
-      <div class="p-kpi k2"><div class="v">10–14<small>&nbsp;млн ₽</small></div><div class="l">Бюджет пилота</div></div>
-      <div class="p-kpi k3"><div class="v">4–5<small>&nbsp;млн ₽</small></div><div class="l">Downside при Stop</div></div>
-      <div class="p-kpi k4"><div class="v">3<small>&nbsp;агента</small></div><div class="l">В проде к месяцу 6</div></div>
+      <div class="p-kpi k1"><div class="v">6<small>&nbsp;мес</small></div><div class="l">Длительность пилота</div></div>
+      <div class="p-kpi k2"><div class="v">10–14<small>&nbsp;млн&nbsp;₽</small></div><div class="l">Бюджет пилота</div></div>
+      <div class="p-kpi k3"><div class="v">4–5<small>&nbsp;млн&nbsp;₽</small></div><div class="l">Риск, если&nbsp;остановимся</div></div>
+      <div class="p-kpi k4"><div class="v">3<small>&nbsp;агента</small></div><div class="l">Работают в&nbsp;бою к&nbsp;месяцу&nbsp;6</div></div>
     </div>
 
-    <div class="gantt reveal">
-      <div class="gantt-head">
-        <h4>Gantt · 10 модулей × 24 недели</h4>
-        <div class="t">AnomalyDetector · ERiRMarker · Campaigner</div>
-      </div>
-      <div class="gantt-body" id="ganttBody">
-        <!-- Заполняется через main.js -->
-      </div>
-      <div class="gantt-legend">
-        <span><span class="gl-dot g1"></span>Инфраструктура и данные</span>
-        <span><span class="gl-dot g2"></span>Продукт и интерфейс</span>
-        <span><span class="gl-dot g3"></span>AI-агенты и Gate</span>
-      </div>
-    </div>
+    <div class="teaser reveal">
+  <div class="teaser-head">
+    <div class="eyebrow">Как это расписано по&nbsp;неделям</div>
+    <h4 class="teaser-title">10&nbsp;модулей. 24&nbsp;недели. Три параллельных потока.</h4>
+    <p class="teaser-desc">Инфраструктура и&nbsp;данные. Интерфейс для&nbsp;КД. AI-агенты и&nbsp;контрольные точки. У&nbsp;каждого модуля&nbsp;— чёткий результат, ответственный и&nbsp;момент проверки. К&nbsp;шестому месяцу трое агентов работают в&nbsp;реальных кампаниях на&nbsp;2–3&nbsp;эталонных&nbsp;ЖК.</p>
+  </div>
+  <div class="teaser-stats"><div class="teaser-stat"><b>24</b><span>недели</span></div><div class="teaser-stat"><b>10</b><span>модулей</span></div><div class="teaser-stat"><b>3</b><span>точки контроля</span></div></div>
+  <button class="teaser-btn" type="button" data-open="modal-gantt">
+    <span class="teaser-btn-lbl">Посмотреть план по&nbsp;неделям</span>
+    <span class="teaser-btn-arr">→</span>
+  </button>
+</div>
 
-    <div style="font-size:18px;font-weight:600;margin-bottom:18px;letter-spacing:-0.01em">5 Go / Stop-loss критериев Gate&nbsp;3</div>
+    <div style="font-size:18px;font-weight:600;margin-bottom:18px;letter-spacing:-0.01em">Пять критериев, по&nbsp;которым решаем: «идём дальше» или&nbsp;«останавливаемся»</div>
     <div class="gates reveal">
-      <div class="gate"><div class="t">01</div><div class="v">Скорость запуска</div><div class="go">Go · падение ≥10×</div><div class="st">Stop · &lt;3×</div></div>
-      <div class="gate"><div class="t">02</div><div class="v">Экономия на контенте</div><div class="go">Go · ≥40%</div><div class="st">Stop · &lt;20%</div></div>
-      <div class="gate"><div class="t">03</div><div class="v">Время отчёта для КД</div><div class="go">Go · &lt;1 мин</div><div class="st">Stop · &gt;5 мин</div></div>
-      <div class="gate"><div class="t">04</div><div class="v">Авто-обработка аномалий</div><div class="go">Go · ≥50% /мес</div><div class="st">Stop · &lt;20%</div></div>
-      <div class="gate"><div class="t">05</div><div class="v">Точность данных</div><div class="go">Go · &lt;2%</div><div class="st">Stop · &gt;5%</div></div>
+      <div class="gate"><div class="t">01</div><div class="v">Скорость запуска кампаний</div><div class="go">Идём · быстрее в&nbsp;10&nbsp;раз</div><div class="st">Стоп · меньше чем в&nbsp;3</div></div>
+      <div class="gate"><div class="t">02</div><div class="v">Стоимость контента</div><div class="go">Идём · минус 40%</div><div class="st">Стоп · меньше 20%</div></div>
+      <div class="gate"><div class="t">03</div><div class="v">Скорость отчёта для&nbsp;КД</div><div class="go">Идём · меньше минуты</div><div class="st">Стоп · больше 5&nbsp;минут</div></div>
+      <div class="gate"><div class="t">04</div><div class="v">Аномалии ловит сам&nbsp;AI</div><div class="go">Идём · половина и&nbsp;больше</div><div class="st">Стоп · меньше 20%</div></div>
+      <div class="gate"><div class="t">05</div><div class="v">Точность данных</div><div class="go">Идём · ошибка меньше 2%</div><div class="st">Стоп · больше 5%</div></div>
     </div>
 
     <div class="downside-card reveal">
-      <div class="dd">−4…−5<small>млн ₽ · downside</small></div>
+      <div class="dd">−4…−5<small>млн&nbsp;₽ · весь риск</small></div>
       <div>
-        <h5>Даже No-Go — это инвестиции в актив</h5>
-        <p>Чистые невозвратные потери при отрицательном решении — менее одного среднеквартального маркетингового провала. Остальное — активы, которые остаются у Брусники:</p>
+        <h5>Даже если остановимся&nbsp;&mdash; Брусника остаётся в&nbsp;плюсе</h5>
+        <p>Меньше одного слабого квартала в&nbsp;маркетинге. Всё остальное&nbsp;— не&nbsp;расход, а&nbsp;активы, которые уже построены и&nbsp;остаются у&nbsp;вас:</p>
         <ul>
-          <li>Библиотека промптов и RAG на ваших данных</li>
-          <li>Технологическая инфра (n8n + stage-слой + коннекторы)</li>
-          <li>3 AI-агента, работающие в проде</li>
-          <li>Обученный внутренний владелец проекта</li>
-          <li>Документированная методология pilot → production</li>
-          <li>Audit trail всех решений пилота для разбора</li>
+          <li>Библиотека AI-инструкций под язык и&nbsp;бренд Брусники</li>
+          <li>Готовая инфраструктура, к&nbsp;которой можно вернуться в&nbsp;любой момент</li>
+          <li>Три AI-агента, которые уже работают в&nbsp;реальных кампаниях</li>
+          <li>Подготовленный внутренний владелец проекта</li>
+          <li>Задокументированный опыт: что&nbsp;сработало, что&nbsp;нет, почему</li>
+          <li>Полная история всех решений пилота&nbsp;— для&nbsp;разбора и&nbsp;переиспользования</li>
         </ul>
       </div>
     </div>
@@ -735,35 +529,35 @@
   <div class="glow glow-orange"></div>
   <div class="wrap">
     <div class="wait-center reveal">
-      <div class="eyebrow" style="margin-bottom:28px">Время = деньги. Буквально.</div>
-      <div class="wait-big"><span id="waitBig">0</span><small>млн ₽ / мес</small></div>
+      <div class="eyebrow" style="margin-bottom:28px">Ожидание&nbsp;— это счёт, который уже идёт</div>
+      <div class="wait-big"><span id="waitBig">0</span><small>млн&nbsp;₽ каждый месяц</small></div>
       <p class="wait-lead">
-        412 млн ÷ 36 месяцев. По верхней границе — 13 млн/мес. <b>Каждый месяц ожидания решения стоит больше, чем бюджет пилота за квартал.</b>
+        412&nbsp;млн, распределённые по&nbsp;36&nbsp;месяцам&nbsp;— это 11&nbsp;млн&nbsp;₽ каждый месяц, пока система не&nbsp;запущена. <b>Один месяц раздумий стоит больше, чем&nbsp;целый квартал пилота.</b>
       </p>
     </div>
 
     <div class="wait-timeline reveal">
       <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:var(--text-3);text-transform:uppercase;margin-bottom:14px">
-        <span>Накопленные потери при задержке</span>
-        <span>Линейная модель</span>
+        <span>Сколько уходит, пока тянем</span>
+        <span>Накопительно</span>
       </div>
       <div class="wait-bar-big"><div class="wait-bar-fill" id="waitFill"></div></div>
       <div class="wait-steps">
-        <div class="wait-step"><div class="mo">Задержка 6 мес</div><div class="lo">−69 млн ₽</div></div>
-        <div class="wait-step"><div class="mo">Задержка 12 мес</div><div class="lo">−137 млн ₽</div></div>
-        <div class="wait-step"><div class="mo">Задержка 18 мес</div><div class="lo">−206 млн ₽</div></div>
-        <div class="wait-step"><div class="mo">Задержка 24 мес</div><div class="lo">−275 млн ₽</div></div>
+        <div class="wait-step"><div class="mo">Через 6&nbsp;мес</div><div class="lo">−69&nbsp;млн&nbsp;₽</div></div>
+        <div class="wait-step"><div class="mo">Через 12&nbsp;мес</div><div class="lo">−137&nbsp;млн&nbsp;₽</div></div>
+        <div class="wait-step"><div class="mo">Через 18&nbsp;мес</div><div class="lo">−206&nbsp;млн&nbsp;₽</div></div>
+        <div class="wait-step"><div class="mo">Через 24&nbsp;мес</div><div class="lo">−275&nbsp;млн&nbsp;₽</div></div>
       </div>
     </div>
 
     <div class="wait-extras reveal">
       <div class="wait-ex">
-        <h5>Стратегическое окно 18–24 месяца</h5>
-        <p>Через 1,5–2 года такие системы станут industry standard в РФ-девелопменте. First-mover-премия исчезнет. «Как у всех» — не позиция для премиум-сегмента.</p>
+        <h5>Окно лидерства закроется через 1,5–2&nbsp;года</h5>
+        <p>Через полтора-два года AI-контур станет стандартом у&nbsp;всех крупных российских девелоперов. Премия за&nbsp;первый шаг исчезнет. Быть «как все»&nbsp;— не&nbsp;позиция для&nbsp;премиум-бренда.</p>
       </div>
       <div class="wait-ex">
-        <h5>Что не считается в рублях</h5>
-        <p>Позиция первенства уходит к тому, кто начнёт первым. Знание собственного маркетинга через audit trail системы. Темп обучения команды, который конкуренты не купят за деньги.</p>
+        <h5>И&nbsp;то, что&nbsp;деньгами не&nbsp;меряется</h5>
+        <p>Репутация первопроходца достаётся тому, кто&nbsp;начал первым. Честное понимание, куда&nbsp;уходит каждый рубль маркетинга. Темп, в&nbsp;котором учится команда,&nbsp;— его нельзя купить за&nbsp;квартал.</p>
       </div>
     </div>
   </div>
@@ -773,26 +567,22 @@
 <section class="cta-block" id="cta">
   <div class="glow glow-purple"></div>
   <div class="wrap reveal">
-    <div class="eyebrow" style="margin-bottom:20px">Следующий шаг</div>
-    <h2>Полная концепция&nbsp;— по&nbsp;ссылке.<br><span class="grad-text">Давайте обсудим.</span></h2>
+    <div class="eyebrow" style="margin-bottom:20px">Что&nbsp;дальше</div>
+    <h2>Полная концепция&nbsp;&mdash; по&nbsp;ссылке.<br><span class="grad-text">Встретимся и&nbsp;обсудим?</span></h2>
     <p class="lead">
-      Вся аргументация, расчёты, архитектурные решения и&nbsp;план пилота&nbsp;— в&nbsp;полной версии.
-      На&nbsp;встрече&nbsp;— пройти по&nbsp;конкретным блокам: экономика, пилот, риски, приоритеты первых шести месяцев.
+      В&nbsp;полной версии&nbsp;— все расчёты, архитектура, детальный план пилота и&nbsp;честный разбор рисков.
+      На&nbsp;встрече можно пройти по&nbsp;любому блоку: экономика, шесть первых месяцев, что&nbsp;делаем в&nbsp;первую очередь и&nbsp;почему.
     </p>
 
-    <a href="#" class="cta-mega">
+    <a href="https://disk.yandex.ru/i/vujp8-Se4SJVMA" class="cta-mega" target="_blank" rel="noopener noreferrer">
       Полная концепция&nbsp;· PDF <span>→</span>
     </a>
-
-    <p class="cta-call">
-      <b>Готов обсудить проект.</b> Напишите в&nbsp;<a href="https://t.me/">Telegram</a> или на&nbsp;<a href="mailto:dmitry.forman@gmail.com">почту</a>.
-    </p>
 
     <div class="author">
       <div class="author-ava">ДФ</div>
       <div>
         <div class="author-name">Дмитрий Форман</div>
-        <div class="author-desc">Автор концепции. Сопровождает проект от&nbsp;архитектуры и&nbsp;сборки команды до&nbsp;Gate&nbsp;3 и&nbsp;выхода в&nbsp;масштаб.</div>
+        <div class="author-desc">Автор концепции. Веду проект от&nbsp;первой архитектурной схемы до&nbsp;момента, когда система сама работает в&nbsp;ваших кампаниях.</div>
       </div>
     </div>
   </div>
@@ -868,5 +658,357 @@
 <!-- Main script: deferred, runs after HTML is parsed -->
 <script src="main.js" defer></script>
 
+
+<!-- MODALS v4 -->
+
+<dialog class="modal" id="modal-losses" aria-labelledby="modal-losses-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-losses-title">Куда уходят 370–470 млн ₽ · разбор по слоям</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+<div class="losses-chart" id="lossesChart">
+        <div class="loss-row" data-layer="media">
+          <div class="name">Реклама дорожает<small>цена лида растёт быстрее, чем бюджет — разницу никто не компенсирует</small></div>
+          <div class="bar"><div class="bar-fill" data-w="92"></div></div>
+          <div class="val">260–311<small>млн ₽</small></div>
+        </div>
+        <div class="loss-row" data-layer="fog">
+          <div class="name">Данные отстают от решений<small>цифры приходят через 4–24 часа — деньги уже потрачены</small></div>
+          <div class="bar"><div class="bar-fill" data-w="33"></div></div>
+          <div class="val">83–111<small>млн ₽</small></div>
+        </div>
+        <div class="loss-row" data-layer="ops">
+          <div class="name">Ручная рутина<small>отчёты, согласования, запуск кампаний, обновление цен — всё вручную</small></div>
+          <div class="bar"><div class="bar-fill" data-w="10"></div></div>
+          <div class="val">18–31<small>млн ₽</small></div>
+        </div>
+        <div class="loss-row" data-layer="reg">
+          <div class="name">Штрафы и ошибки<small>маркировка ЕРИР, ФАС, UTM, дубли лидов — накапливаются незаметно</small></div>
+          <div class="bar"><div class="bar-fill" data-w="6"></div></div>
+          <div class="val">9–18<small>млн ₽</small></div>
+        </div>
+
+        <div class="losses-foot">
+          <b>Нижняя цифра&nbsp;— подтверждённый минимум.</b> Верхняя&nbsp;— консервативная оценка: слои усиливают друг друга. В&nbsp;план берём <b>412&nbsp;млн&nbsp;₽</b> за&nbsp;3&nbsp;года (58 / 142 / 208&nbsp;по годам). Формулы и&nbsp;источники&nbsp;— Приложение&nbsp;П1.
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-mixer" aria-labelledby="modal-mixer-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-mixer-title">Два сценария · 12 кварталов</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+<div class="mixer-tool reveal">
+      <div class="mixer-tool-head">
+        <div>
+          <div class="ttl">Соберите свой сценарий по&nbsp;кварталам</div>
+          <div class="sub">Нажмите на&nbsp;квартал&nbsp;— переключится режим. NET за&nbsp;3&nbsp;года пересчитается автоматически.</div>
+        </div>
+        <div class="net">
+          <div class="lbl">NET · 3&nbsp;года</div>
+          <div class="val" id="mixerNet">+663 млн ₽</div>
+        </div>
+      </div>
+
+      <div class="mixer-grid" id="mixerGrid"></div>
+
+      <div class="mixer-legend">
+        <span><span class="dot dot-a"></span>А&nbsp;— экономия в&nbsp;прибыль</span>
+        <span><span class="dot dot-b"></span>Б&nbsp;— реинвест в&nbsp;рост</span>
+        <span class="muted">Пилот (Q1–Q2) · контрольная точка в&nbsp;конце Q2 · развитие (Q3–Q12)</span>
+      </div>
+
+      <div class="mixer-chart">
+        <div class="mixer-chart-head">
+          <span>Накопленный результат · по&nbsp;кварталам · млн&nbsp;₽</span>
+          <span id="chartEnd">+663 на&nbsp;Q12</span>
+        </div>
+        <svg id="mixerChart" viewBox="0 0 900 220" preserveAspectRatio="none"></svg>
+      </div>
+
+      <div class="mixer-strategies">
+        <button class="strat-chip active" data-strategy="smart">Как мы&nbsp;рекомендуем</button>
+        <button class="strat-chip" data-strategy="all-a">Только экономия</button>
+        <button class="strat-chip" data-strategy="all-b">Только рост</button>
+        <button class="strat-chip" data-strategy="half">50 / 50</button>
+      </div>
+
+      <div class="mixer-note">
+        <b>Наша рекомендация:</b> весь пилот (Q1–Q2)&nbsp;— сценарий&nbsp;А, возврат доказываем на&nbsp;фактах. С&nbsp;Q3, когда инвестиции уже окупаются&nbsp;— переключаем рычаг в&nbsp;сценарий&nbsp;Б, освободившийся ресурс идёт в&nbsp;рост. План по&nbsp;прибыли не&nbsp;страдает, эффект накапливается.
+      </div>
+    </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-agents" aria-labelledby="modal-agents-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-agents-title">27 агентов внутри процессов</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+<div class="wrap" id="agents">
+    <div class="agents-block reveal">
+      <div class="agents-head">
+        <h4>27 агентов · 6 направлений</h4>
+        <div class="agents-tabs" id="agentsTabs">
+          <button class="agents-tab active" data-domain="all">Все</button>
+          <button class="agents-tab" data-domain="data">Данные</button>
+          <button class="agents-tab" data-domain="media">Реклама</button>
+          <button class="agents-tab" data-domain="content">Контент</button>
+          <button class="agents-tab" data-domain="crm">CRM</button>
+          <button class="agents-tab" data-domain="sec">Безопасность</button>
+          <button class="agents-tab" data-domain="cd">Для КД</button>
+        </div>
+      </div>
+      <div class="agents-grid" id="agentsGrid"></div>
+      <button class="agents-more" id="agentsMore" type="button" hidden>
+        <span class="lbl">Показать ещё</span>
+        <span class="cnt" id="agentsMoreCnt">17 агентов</span>
+      </button>
+      <div style="margin-top:20px;font-size:12px;color:var(--text-3);line-height:1.5">
+        К&nbsp;контрольной точке пилота (конец месяца&nbsp;6) в&nbsp;реальных кампаниях работают трое: <b style="color:#fff">AnomalyDetector · ERiRMarker · Campaigner</b>. AnomalyDetector и&nbsp;ERiRMarker&nbsp;— с&nbsp;недели&nbsp;7, Campaigner&nbsp;— с&nbsp;недели&nbsp;11. Те, что быстрее всего окупают вложенное. Остальные подключаются после контрольной точки. Каждый агент&nbsp;— узкая специализация: одна задача, понятные входы и&nbsp;выходы, метрика качества. Все важные решения&nbsp;— за&nbsp;человеком.
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-flow" aria-labelledby="modal-flow-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-flow-title">Запуск кампании за 1 час · 10 агентов</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+<div class="flow-block reveal">
+      <div class="flow-head">
+        <div class="eyebrow" style="margin-bottom:14px">Как это выглядит в&nbsp;реальности</div>
+        <h3>Запуск рекламной кампании <span class="a">за&nbsp;1&nbsp;час</span>.</h3>
+        <p class="lead" style="margin-top:18px;max-width:760px">
+          Одна голосовая команда в&nbsp;Telegram. Десять AI-агентов работают как слаженная бригада: разбирают задачу на&nbsp;части,
+          передают результат друг другу, перекрёстно проверяют ошибки&nbsp;— и&nbsp;возвращают КД одну кнопку «Запустить».
+          Ниже&nbsp;— реальный тайминг по&nbsp;минутам. Что делает каждый агент и&nbsp;почему это вообще работает.
+        </p>
+      </div>
+
+      <div class="flow-steps">
+
+        <div class="flow-step">
+          <div class="flow-time">11:00</div>
+          <div class="flow-icon">01</div>
+          <div class="flow-title">Голосовая команда в&nbsp;Telegram</div>
+          <div class="flow-desc">
+            КД говорит голосом: «Запусти кампанию на&nbsp;ЖК&nbsp;“Речной”, фокус&nbsp;— молодые пары, бюджет в&nbsp;рынок, запуск завтра утром».
+            Одно предложение, 20&nbsp;секунд. Дальше КД занимается другими делами&nbsp;— остальное делает система.
+          </div>
+          <div class="flow-actor">КД · 20&nbsp;сек</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true"></div>
+
+        <div class="flow-step">
+          <div class="flow-time">11:00:30</div>
+          <div class="flow-icon">02</div>
+          <div class="flow-title">Разбор задачи и&nbsp;бюджет</div>
+          <div class="flow-desc">
+            <b>Campaigner</b> раскладывает фразу на&nbsp;смыслы, подтягивает портрет ЖК «Речной»&nbsp;— цены, остатки, конкурентное окружение, историю успешных креативов по&nbsp;сегменту.
+            Сверяется с&nbsp;календарём, чтобы кампании не&nbsp;били друг друга по&nbsp;аудитории.
+            <b>Budget Allocator</b> считает цену лида по&nbsp;каналам и&nbsp;предлагает
+            распределение <b>2,4&nbsp;млн&nbsp;₽</b>: VK&nbsp;40% · МТ&nbsp;25% · Telegram Ads&nbsp;20% · контекст&nbsp;15%.
+          </div>
+          <div class="flow-actor">2&nbsp;агента · 4&nbsp;мин</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true"></div>
+
+        <div class="flow-step parallel">
+          <div class="flow-time">11:05–11:30</div>
+          <div class="flow-icon">03</div>
+          <div class="flow-title">Производственная линия&nbsp;— всё одновременно</div>
+          <div class="flow-desc">
+            <div class="flow-sub"><b>DraftWriter</b> пишет 8&nbsp;вариантов заголовков под 3&nbsp;типа молодых пар</div>
+            <div class="flow-sub"><b>BrandEditor</b> прогоняет каждый через брендбук Брусники, отсекает 5&nbsp;слабых, оставляет 3&nbsp;сильных</div>
+            <div class="flow-sub"><b>LandingGen</b> собирает посадочную из&nbsp;готовых блоков, подбирает призыв к&nbsp;действию и&nbsp;метки для&nbsp;аналитики</div>
+            <div class="flow-sub"><b>ERiRMarker</b> готовит маркировку для&nbsp;Роскомнадзора&nbsp;— два часа ручной работы уходят сами собой</div>
+          </div>
+          <div class="flow-actor">4&nbsp;агента параллельно · 25&nbsp;мин</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true"></div>
+
+        <div class="flow-step">
+          <div class="flow-time">11:32</div>
+          <div class="flow-icon">04</div>
+          <div class="flow-title">Перекрёстная проверка&nbsp;— агенты читают агентов</div>
+          <div class="flow-desc">
+            <b>AnomalyDetector</b> сравнивает кампанию с&nbsp;текущими: не&nbsp;пересекаемся&nbsp;ли по&nbsp;аудитории, не&nbsp;конфликтуем&nbsp;ли по&nbsp;цене и&nbsp;каналам.
+            <b>PIIGuard</b> проверяет креативы, чтобы в&nbsp;них не&nbsp;утекли персональные данные.
+            <b>CreativeReviewer</b> сверяет с&nbsp;лучшими пятью креативами квартала по&nbsp;ЖК и&nbsp;ставит оценку 0–100.
+            Если меньше&nbsp;60 или&nbsp;есть конфликт&nbsp;— кампания возвращается на&nbsp;доработку, до&nbsp;человека даже не&nbsp;доходит.
+          </div>
+          <div class="flow-actor">3&nbsp;агента · 2&nbsp;мин</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true"></div>
+
+        <div class="flow-step">
+          <div class="flow-time">11:35</div>
+          <div class="flow-icon">05</div>
+          <div class="flow-title">Прогноз и&nbsp;один тап</div>
+          <div class="flow-desc">
+            <b>Simulator</b> прогоняет модель: ждём <b>127&nbsp;лидов</b> · цена лида <b>18&nbsp;900&nbsp;₽</b> ·
+            конверсия&nbsp;2,1% · маржа +340&nbsp;тыс&nbsp;₽ сверх базы. Цены сверены с&nbsp;CRM, остатки подтверждены.
+            В&nbsp;Telegram приходит карточка: пять цифр, три заголовка, одна кнопка <b>«Запустить»</b>. Один тап&nbsp;— и&nbsp;всё.
+          </div>
+          <div class="flow-actor">Simulator + решение человека · 30&nbsp;сек</div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true"></div>
+
+        <div class="flow-step last">
+          <div class="flow-time">12:00</div>
+          <div class="flow-icon">06</div>
+          <div class="flow-title">В&nbsp;эфире&nbsp;— дальше автопилот</div>
+          <div class="flow-desc">
+            Кампания развёрнута во&nbsp;все кабинеты. Маркировка ЕРИР прошла сама.
+            Дальше каждые 15&nbsp;минут работает <b>AnomalyDetector</b>: выросла цена клика&nbsp;— бюджет перераспределяется на&nbsp;лету;
+            креатив выгорел&nbsp;— <b>DraftWriter</b> готовит свежую версию. Человек нужен только на&nbsp;уровне стратегии.
+          </div>
+          <div class="flow-actor">От&nbsp;идеи до&nbsp;эфира · 1&nbsp;час</div>
+        </div>
+
+      </div>
+
+      <div class="flow-compare">
+        <div class="flow-before">
+          <div class="lbl">БЫЛО</div>
+          <div class="val">1–1,5&nbsp;мес</div>
+          <div class="sub">5–8&nbsp;человек · 3–5&nbsp;правок · ручная маркировка · несколько согласований</div>
+        </div>
+        <div class="flow-arrow-big">→</div>
+        <div class="flow-after">
+          <div class="lbl">СТАЛО</div>
+          <div class="val">1&nbsp;час</div>
+          <div class="sub">Один процесс · 10&nbsp;агентов в&nbsp;связке · один тап</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-calc" aria-labelledby="modal-calc-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-calc-title">Проверьте экономику на прочность</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+<div class="calc reveal">
+      <div class="calc-head">
+        <h4>Проверьте экономику на&nbsp;прочность</h4>
+        <div class="t">Цена лида × Конверсия × Использование командой → NET сценарий&nbsp;Б</div>
+      </div>
+      <p class="calc-intro">
+        Подвиньте три ползунка&nbsp;— увидите, как держится модель. База: цена лида 15&nbsp;тыс&nbsp;₽ · конверсия 2,0% · пользуются 65%. Во&nbsp;всех реалистичных комбинациях NET остаётся положительным.
+      </p>
+
+      <!-- Мобильный sticky-бейдж: виден при перемещении ползунков -->
+      <div class="calc-sticky" aria-hidden="true">
+        <div class="cs-top">
+          <div class="cs-lbl">NET · 3 года</div>
+          <div class="cs-val"><span>+</span><span id="netNumMob">672</span> <span class="u">млн&nbsp;₽</span></div>
+        </div>
+        <div class="cs-meta"><span id="detCplMob">Цена 15 × CR 2,0% × 65%</span></div>
+        <div class="cs-kpis">
+          <span><em>ROI</em><b id="detRoiMob">5,9×</b></span>
+          <span><em>На капитал</em><b id="detMoicMob">6,9×</b></span>
+          <span><em>Окупаемость</em><b id="detBeMob">мес. 12–13</b></span>
+        </div>
+      </div>
+
+      <div class="calc-grid">
+        <div class="sliders">
+          <div class="slider-block">
+            <div class="slider-head">
+              <div class="slider-label">Цена лида<small>сколько стоит один лид на&nbsp;рынке</small></div>
+              <div class="slider-val"><span id="cplVal">15</span> <span>тыс&nbsp;₽</span></div>
+            </div>
+            <input type="range" id="cplSlider" min="10" max="24" value="15" step="0.5">
+            <div class="slider-ticks"><span>10</span><span>15 (база)</span><span>20</span><span>24</span></div>
+          </div>
+          <div class="slider-block">
+            <div class="slider-head">
+              <div class="slider-label">Конверсия лид&nbsp;→ сделка<small>какая доля доходит до&nbsp;сделки</small></div>
+              <div class="slider-val"><span id="crVal">2.0</span> <span>%</span></div>
+            </div>
+            <input type="range" id="crSlider" min="1.2" max="3.0" value="2.0" step="0.1">
+            <div class="slider-ticks"><span>1,2%</span><span>2,0% (база)</span><span>2,5%</span><span>3,0%</span></div>
+          </div>
+          <div class="slider-block">
+            <div class="slider-head">
+              <div class="slider-label">Использование командой<small>какая часть сотрудников реально работает в&nbsp;системе</small></div>
+              <div class="slider-val"><span id="adoptVal">65</span> <span>%</span></div>
+            </div>
+            <input type="range" id="adoptSlider" min="30" max="90" value="65" step="5">
+            <div class="slider-ticks"><span>30%</span><span>65% (план)</span><span>90%</span></div>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div class="lbl">NET сценарий&nbsp;Б · 3&nbsp;года</div>
+          <div class="net-big"><span class="c">+</span><span id="netNum">672</span> <span class="u">млн&nbsp;₽</span></div>
+          <div class="details">
+            <div class="row"><span id="detCpl">Цена 15 × CR 2,0% × 65%</span><span>базовая</span></div>
+            <div class="row"><span>ROI</span><span id="detRoi">5,9×</span></div>
+            <div class="row"><span>Возврат на&nbsp;капитал</span><span id="detMoic">6,9×</span></div>
+            <div class="row"><span>Доп. выручка</span><span id="detRev">~1,3&nbsp;млрд</span></div>
+            <div class="row"><span>Окупаемость</span><span id="detBe">месяц 12–13</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-note">
+        Модель считает по&nbsp;сетке v13.2 (раздел&nbsp;4). В&nbsp;ноль за&nbsp;3&nbsp;года модель уходит только при цене лида выше 30&nbsp;тыс&nbsp;₽ и&nbsp;конверсии ниже 1,5% одновременно&nbsp;— это сценарий серьёзной деградации рынка. Использование командой ниже 40%&nbsp;— риск, но&nbsp;мы&nbsp;его снимаем интерфейсом в&nbsp;Telegram и&nbsp;обучением.
+      </div>
+    </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-gantt" aria-labelledby="modal-gantt-title">
+  <div class="modal-topbar">
+    <div class="modal-title" id="modal-gantt-title">План на 24 недели · 10 модулей</div>
+    <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+  </div>
+  <div class="modal-scroll">
+    <div class="wrap modal-wrap">
+<div class="gantt reveal">
+      <div class="gantt-head">
+        <h4>Дорожная карта · 10&nbsp;модулей × 24&nbsp;недели</h4>
+        <div class="t">В&nbsp;пилоте работают: AnomalyDetector · ERiRMarker · Campaigner</div>
+      </div>
+      <div class="gantt-body" id="ganttBody">
+        <!-- Заполняется через main.js -->
+      </div>
+      <div class="gantt-legend">
+        <span><span class="gl-dot g1"></span>Инфраструктура и&nbsp;данные</span>
+        <span><span class="gl-dot g2"></span>Продукт и&nbsp;интерфейс&nbsp;КД</span>
+        <span><span class="gl-dot g3"></span>Агенты и&nbsp;контрольные точки</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</dialog>
 </body>
 </html>
